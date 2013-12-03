@@ -106,12 +106,12 @@ spacer.text = " | "
 
 -- battery widget
 batwidget = widget({ type = "textbox" })
-vicious.register(batwidget, vicious.widgets.bat, "Akku: $1 $2% $3 h", 15, "BAT0")
+vicious.register(batwidget, vicious.widgets.bat, "Akku: $1 $2% <span color='white'>$3 h</span>", 15, "BAT0")
 
 -- Create a textclock widget
 -- Register widget
 mytextclock = widget({ type = "textbox" })
-vicious.register(mytextclock, vicious.widgets.date, "%Y-%m-%d %H:%M %z", 10)
+vicious.register(mytextclock, vicious.widgets.date, "%Y-%m-%d <span color='white'>%H:%M</span> %z", 10)
 
 -- Create a systray
 mysystray = widget({ type = "systray" })
