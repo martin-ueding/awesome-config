@@ -101,9 +101,12 @@ mylauncher = awful.widget.launcher({ image = image(beautiful.awesome_icon),
 
 -- {{{ Wibox
 
+spacer = widget({ type = "textbox" })
+spacer.text = " | "
+
 -- battery widget
 batwidget = widget({ type = "textbox" })
-vicious.register(batwidget, vicious.widgets.bat, "Akku: $1 $2% $3 h |", 60, "BAT0")
+vicious.register(batwidget, vicious.widgets.bat, "Akku: $1 $2% $3 h", 60, "BAT0")
 
 -- Create a textclock widget
 -- Register widget
@@ -188,8 +191,11 @@ for s = 1, screen.count() do
             layout = awful.widget.layout.horizontal.leftright
         },
         mylayoutbox[s],
+        spacer,
         mytextclock,
+        spacer,
         batwidget,
+        spacer,
         s == 1 and mysystray or nil,
         mytasklist[s],
         layout = awful.widget.layout.horizontal.rightleft
