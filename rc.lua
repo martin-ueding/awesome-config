@@ -180,7 +180,6 @@ for s = 1, screen.count() do
     -- Add widgets to the wibox - order matters
     mywibox[s].widgets = {
         {
-            batwidget,
             mylauncher,
             mytaglist[s],
             mypromptbox[s],
@@ -188,6 +187,7 @@ for s = 1, screen.count() do
         },
         mylayoutbox[s],
         mytextclock,
+        batwidget,
         s == 1 and mysystray or nil,
         mytasklist[s],
         layout = awful.widget.layout.horizontal.rightleft
