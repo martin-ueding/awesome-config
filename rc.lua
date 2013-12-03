@@ -348,20 +348,19 @@ awful.rules.rules = {
                      border_color = beautiful.border_normal,
                      focus = true,
                      keys = clientkeys,
-                     buttons = clientbuttons } },
+                      maximized_vertical = false,
+                      maximized_horizontal = false,
+                     buttons = clientbuttons,
+                 } },
     { rule = { class = "pinentry" },
       properties = { floating = true } },
     { rule = { class = "gimp" },
       properties = { floating = true } },
     -- Set Firefox to always map on tags number 2 of screen 1.
     { rule = { class = "Firefox" },
-      properties = { tag = tags[1][1], floating = false } },
+      properties = { tag = tags[1][1] } },
     { rule = { class = "Thunderbird" },
-      properties = { tag = tags[1][2], floating = false } },
-    { rule = { class = "Konsole" },
-      properties = { floating = false } },
-    { rule = { class = "Dolphin" },
-      properties = { floating = false } },
+      properties = { tag = tags[1][2] } },
 }
 -- }}}
 
