@@ -102,11 +102,13 @@ mylauncher = awful.widget.launcher({ image = image(beautiful.awesome_icon),
 -- {{{ Wibox
 
 -- battery widget
-batwidget = awful.widget.textbox()
-vicious.register(batwidget, vicious.widgets.bat, "bat $2% $3 h", 60, "BAT0")
+batwidget = widget({ type = "textbox" })
+vicious.register(batwidget, vicious.widgets.bat, "Akku: $1 $2% $3 h |", 60, "BAT0")
 
 -- Create a textclock widget
-mytextclock = awful.widget.textclock({ align = "right" })
+-- Register widget
+mytextclock = widget({ type = "textbox" })
+vicious.register(mytextclock, vicious.widgets.date, "%Y-%m-%d %H:%M %z", 10)
 
 -- Create a systray
 mysystray = widget({ type = "systray" })
