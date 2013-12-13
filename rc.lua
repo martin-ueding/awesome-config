@@ -356,9 +356,9 @@ awful.rules.rules = {
       properties = { floating = true } },
     { rule = { class = "gimp" },
       properties = { floating = true } },
-    { rule = { class = "plasma-desktop" },
+    { rule = { class = "Plasma-desktop" },
       properties = { floating = true } },
-    { rule = { class = "plasma" },
+    { rule = { class = "Plasma" },
       properties = { floating = true } },
     -- Set Firefox to always map on tags number 2 of screen 1.
     { rule = { class = "Firefox" },
