@@ -425,3 +425,5 @@ client.add_signal("unfocus", function(c) c.border_color = beautiful.border_norma
 -- }}}
 
 -- os.execute('mu-startup &')
+
+naughty.config.default_preset.timeout = 4
