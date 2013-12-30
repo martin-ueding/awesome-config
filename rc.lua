@@ -364,6 +364,10 @@ awful.rules.rules = {
         properties = { floating = true }
     },
     {
+        rule = { class = "Klipper" },
+        properties = { floating = true }
+    },
+    {
         rule = { class = "Plasma-desktop" },
         properties = { floating = true },
         callback = function(c)
