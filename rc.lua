@@ -69,16 +69,20 @@ layouts =
     -- awful.layout.suit.max.fullscreen,
     -- awful.layout.suit.magnifier
 }
--- }}}
 
--- {{{ Tags
--- Define a tag table which hold all screen tags.
+default_layout = awful.layout.suit.tile
+
 tags = {}
-for s = 1, screen.count() do
-    -- Each screen has its own tag table.
-    tags[s] = awful.tag({ 1, 2, 3, 4, 5, 6, 7, 8, 9 }, s, layouts[2])
+tags[1] = awful.tag(
+    { 'www', 'eml', 3, 4, 5, 6, 7, 'skype', 'music' },
+    s,
+    { awful.layout.suit.tile.bottom, default_layout, default_layout,
+    default_layout, default_layout, default_layout,
+    default_layout, awful.layout.suit.fair, default_layout }
+)
+for s = 2, screen.count() do
+    tags[s] = awful.tag({ 1, 2, 3, 4, 5, 6, 7, 8, 9 }, s, default_layout)
 end
--- }}}
 
 -- {{{ Menu
 -- Create a laucher widget and a main menu
