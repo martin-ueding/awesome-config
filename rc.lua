@@ -74,11 +74,11 @@ default_layout = awful.layout.suit.tile
 
 tags = {}
 tags[1] = awful.tag(
-    { 'www', 'eml', 3, 4, 5, 6, 7, 'skype', 'music' },
+    { 1, 2, 3, 4, 5, '6:www', '7:eml', '8:skype', '9:music' },
     s,
-    { awful.layout.suit.tile.bottom, default_layout, default_layout,
-    default_layout, default_layout, default_layout,
-    default_layout, awful.layout.suit.fair, default_layout }
+    { default_layout, default_layout, default_layout, default_layout,
+    default_layout, awful.layout.suit.tile.bottom, default_layout,
+    awful.layout.suit.fair, default_layout }
 )
 for s = 2, screen.count() do
     tags[s] = awful.tag({ 1, 2, 3, 4, 5, 6, 7, 8, 9 }, s, default_layout)
@@ -380,11 +380,11 @@ awful.rules.rules = {
     },
     {
         rule = { class = "Firefox" },
-        properties = { tag = tags[1][1] }
+        properties = { tag = tags[1][6] }
     },
     {
         rule = { class = "Rekonq" },
-        properties = { tag = tags[1][1] }
+        properties = { tag = tags[1][6] }
     },
     {
         rule = { class = "Skype" },
@@ -396,7 +396,7 @@ awful.rules.rules = {
     },
     {
         rule = { class = "Thunderbird" },
-        properties = { tag = tags[1][2] }
+        properties = { tag = tags[1][7] }
     },
 }
 -- }}}
