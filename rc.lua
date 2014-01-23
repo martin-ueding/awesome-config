@@ -77,7 +77,7 @@ tags[1] = awful.tag(
     { 1, 2, 3, 4, 5, '6:www', '7:eml', '8:skype', '9:music' },
     s,
     { default_layout, default_layout, default_layout, default_layout,
-    default_layout, awful.layout.suit.tile.bottom, default_layout,
+    default_layout, default_layout, default_layout,
     awful.layout.suit.fair, default_layout }
 )
 for s = 2, screen.count() do
@@ -357,6 +357,15 @@ awful.rules.rules = {
             maximized_vertical = false,
             maximized_horizontal = false,
             buttons = clientbuttons,
+            callback = function(c)
+                if c.class == "Xournal" then
+                    c.screen = 2
+                    c:tags({tags[c.screen][1]})
+                else
+                    c.screen = 1
+                    c:tags({tags[c.screen][1]})
+                end
+            end
         }
     },
     {
