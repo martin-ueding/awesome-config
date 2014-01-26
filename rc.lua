@@ -39,7 +39,7 @@ end
 
 -- {{{ Variable definitions
 -- Themes define colours, icons, and wallpapers
-beautiful.init("/home/mu/.config/awesome/default/theme.lua")
+beautiful.init("/home/mu/.config/awesome/themes/solarized/dark/theme.lua")
 
 -- This is used later as the default terminal and editor to run.
 terminal = "x-terminal-emulator"
