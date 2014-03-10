@@ -249,8 +249,9 @@ globalkeys = awful.util.table.join(
 )
 
 function wrapped_kill(client)
-    os.execute("logger -t awesome-config " .. client.client["class"])
-    c:kill()
+    if client.class ~= 'Plasma' then
+        client:kill()
+    end
 end
 
 clientkeys = awful.util.table.join(
