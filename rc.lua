@@ -254,9 +254,15 @@ function wrapped_kill(client)
     end
 end
 
+function wrapped_fullscreen(client)
+    if client.class ~= 'Plasma' then
+        client.fullscreen = not client.fullscreen
+    end
+end
+
 clientkeys = awful.util.table.join(
-    awful.key({ modkey,           }, "f",      function (c) c.fullscreen = not c.fullscreen  end),
-    awful.key({ modkey,           }, "c",      function (c) wrapped_kill(c)                  end),
+    awful.key({ modkey,           }, "f",      wrapped_fullscreen),
+    awful.key({ modkey,           }, "c",      wrapped_kill),
     awful.key({ modkey, "Control" }, "space",  awful.client.floating.toggle                     ),
     awful.key({ modkey, "Control" }, "Return", function (c) c:swap(awful.client.getmaster()) end),
     awful.key({ modkey,           }, "o",      awful.client.movetoscreen                        ),
