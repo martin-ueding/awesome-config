@@ -97,7 +97,7 @@ vicious.register(batwidget, vicious.widgets.bat, "Akku: $1 $2% <span color='whit
 -- Create a textclock widget
 -- Register widget
 mytextclock = widget({ type = "textbox" })
-vicious.register(mytextclock, vicious.widgets.date, "%Y-%m-%d <span color='white'>%H:%M</span> %z", 10)
+vicious.register(mytextclock, vicious.widgets.date, "%a, %Y-%m-%d <span color='white'>%H:%M</span> %z", 10)
 
 -- Create a systray
 mysystray = widget({ type = "systray" })
