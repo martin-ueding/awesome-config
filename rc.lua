@@ -72,13 +72,33 @@ layouts =
 
 default_layout = awful.layout.suit.tile
 
+tag_for_eml = 10
+tag_for_music = 11
+tag_for_www = 9
+tag_for_im = 12
+
+assoc = {}
+assoc[tag_for_www] = 'www'
+assoc[tag_for_eml] = 'eml'
+assoc[tag_for_im] = 'im'
+assoc[tag_for_music] = 'music'
+
+tag_numbers = { 1, 2, 3, 4, 5, '6', '7', '8', '9', '0', '-', '=' }
+tag_names = {}
+for i = 1, #tag_numbers do
+    tag_names[i] = tag_numbers[i]
+    if assoc[i] ~= nil then
+        tag_names[i] = tag_names[i] .. ":" .. assoc[i]
+    end
+end
+
 tags = {}
 tags[1] = awful.tag(
-    { 1, 2, 3, 4, 5, '6:www', '7:eml', '8:skype', '9:music' },
+    tag_names,
     s,
     { default_layout, default_layout, default_layout, default_layout,
-    default_layout, default_layout, default_layout,
-    awful.layout.suit.fair, default_layout }
+    default_layout, default_layout, default_layout, awful.layout.suit.fair,
+    default_layout, default_layout, default_layout, default_layout }
 )
 for s = 2, screen.count() do
     tags[s] = awful.tag({ 1, 2, 3, 4, 5, 6, 7, 8, 9 }, s, default_layout)
@@ -284,7 +304,7 @@ clientkeys = awful.util.table.join(
 -- Compute the maximum number of digit we need, limited to 9
 keynumber = 0
 for s = 1, screen.count() do
-   keynumber = math.min(9, math.max(#tags[s], keynumber));
+   keynumber = math.min(12, math.max(#tags[s], keynumber));
 end
 
 -- Bind all key numbers to tags.
@@ -374,23 +394,23 @@ awful.rules.rules = {
     },
     {
         rule = { class = "Firefox" },
-        properties = { tag = tags[1][6] }
+        properties = { tag = tags[1][tag_for_www] }
     },
     {
         rule = { class = "Rekonq" },
-        properties = { tag = tags[1][6] }
+        properties = { tag = tags[1][tag_for_www] }
     },
     {
         rule = { class = "Skype" },
-        properties = { tag = tags[1][8] }
+        properties = { tag = tags[1][tag_for_im] }
     },
     {
         rule = { class = "Clementine" },
-        properties = { tag = tags[1][9] }
+        properties = { tag = tags[1][tag_for_music] }
     },
     {
         rule = { class = "Thunderbird" },
-        properties = { tag = tags[1][7] }
+        properties = { tag = tags[1][tag_for_eml] }
     },
 }
 -- }}}
