@@ -167,6 +167,16 @@ mytasklist.buttons = awful.util.table.join(
                                               if client.focus then client.focus:raise() end
                                           end))
 
+-- Initialize widget
+cpuwidget = widget({ type = "textbox" })
+-- Register widget
+vicious.register(cpuwidget, vicious.widgets.cpu, "$1%")
+
+-- Initialize widget
+memwidget = widget({ type = "textbox" })
+-- Register widget
+vicious.register(memwidget, vicious.widgets.mem, "$2 / $3 MB", 13)
+
 for s = 1, screen.count() do
     -- Create a promptbox for each screen
     mypromptbox[s] = awful.widget.prompt({ layout = awful.widget.layout.horizontal.leftright })
@@ -200,6 +210,10 @@ for s = 1, screen.count() do
         mytextclock,
         spacer,
         batwidget,
+        spacer,
+        memwidget,
+        spacer,
+        cpuwidget,
         spacer,
         s == 1 and mysystray or nil,
         mytasklist[s],
