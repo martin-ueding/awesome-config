@@ -170,12 +170,12 @@ mytasklist.buttons = awful.util.table.join(
 -- Initialize widget
 cpuwidget = widget({ type = "textbox" })
 -- Register widget
-vicious.register(cpuwidget, vicious.widgets.cpu, "$1%")
+vicious.register(cpuwidget, vicious.widgets.cpu, "$1%", 5)
 
 -- Initialize widget
 memwidget = widget({ type = "textbox" })
 -- Register widget
-vicious.register(memwidget, vicious.widgets.mem, "$2 / $3 MB", 13)
+vicious.register(memwidget, vicious.widgets.mem, "$2 / $3 MB", 10)
 
 for s = 1, screen.count() do
     -- Create a promptbox for each screen
