@@ -283,15 +283,38 @@ globalkeys = awful.util.table.join(
 )
 
 function wrapped_kill(client)
-    if client.class ~= 'Plasma' then
-        client:kill()
+    if client.class == 'Plasma' then
+        return
     end
+
+    client:kill()
 end
 
 function wrapped_fullscreen(client)
-    if client.class ~= 'Plasma' then
-        client.fullscreen = not client.fullscreen
+    if client.class == 'Plasma' then
+        return
     end
+
+    client.fullscreen = not client.fullscreen
+end
+
+function wrapped_minimize(client)
+    if client.class == 'Plasma' then
+        return
+    end
+
+    -- The client currently has the input focus, so it cannot be
+    -- minimized, since minimized clients can't have the focus.
+    client.minimized = true
+end
+
+function wrapped_maximize(client)
+    if client.class == 'Plasma' then
+        return
+    end
+
+    client.maximized_horizontal = not client.maximized_horizontal
+    client.maximized_vertical   = not client.maximized_vertical
 end
 
 clientkeys = awful.util.table.join(
@@ -302,17 +325,8 @@ clientkeys = awful.util.table.join(
     awful.key({ modkey,           }, "o",      awful.client.movetoscreen                        ),
     awful.key({ modkey, "Shift"   }, "r",      function (c) c:redraw()                       end),
     awful.key({ modkey,           }, "t",      function (c) c.ontop = not c.ontop            end),
-    awful.key({ modkey,           }, "n",
-        function (c)
-            -- The client currently has the input focus, so it cannot be
-            -- minimized, since minimized clients can't have the focus.
-            c.minimized = true
-        end),
-    awful.key({ modkey,           }, "m",
-        function (c)
-            c.maximized_horizontal = not c.maximized_horizontal
-            c.maximized_vertical   = not c.maximized_vertical
-        end)
+    awful.key({ modkey,           }, "n", wrapped_minimize),
+    awful.key({ modkey,           }, "m", wrapped_maximize)
 )
 
 -- Compute the maximum number of digit we need, limited to 9
