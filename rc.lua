@@ -98,7 +98,7 @@ tags[1] = awful.tag(
     s,
     { default_layout, default_layout, default_layout, default_layout,
     default_layout, default_layout, default_layout, awful.layout.suit.fair,
-    default_layout, default_layout, default_layout, default_layout }
+    default_layout, default_layout, default_layout, awful.layout.suit.fair }
 )
 for s = 2, screen.count() do
     tags[s] = awful.tag({ 1, 2, 3, 4, 5, 6, 7, 8, 9 }, s, default_layout)
