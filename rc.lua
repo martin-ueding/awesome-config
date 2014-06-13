@@ -73,15 +73,17 @@ layouts =
 default_layout = awful.layout.suit.tile
 
 tag_for_eml = 10
-tag_for_music = 11
-tag_for_www = 9
 tag_for_im = 12
+tag_for_music = 11
+tag_for_runs = 8
+tag_for_www = 9
 
 assoc = {}
 assoc[tag_for_www] = 'www'
 assoc[tag_for_eml] = 'eml'
 assoc[tag_for_im] = 'im'
 assoc[tag_for_music] = 'music'
+assoc[tag_for_runs] = 'runs'
 
 tag_numbers = { 1, 2, 3, 4, 5, '6', '7', '8', '9', '0', '-', '=' }
 tag_names = {}
