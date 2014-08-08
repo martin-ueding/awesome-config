@@ -437,6 +437,18 @@ awful.rules.rules = {
         properties = { tag = tags[1][tag_for_im] }
     },
     {
+        rule = { class = "Pidgin" },
+        properties = { tag = tags[1][tag_for_im] }
+    },
+    {
+        rule = { class = "Ekiga" },
+        properties = { tag = tags[1][tag_for_im] }
+    },
+    {
+        rule = { class = "Empathy" },
+        properties = { tag = tags[1][tag_for_im] }
+    },
+    {
         rule = { class = "Clementine" },
         properties = { tag = tags[1][tag_for_music] }
     },
