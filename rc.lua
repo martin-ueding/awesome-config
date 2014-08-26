@@ -122,6 +122,16 @@ vicious.register(mytextclock, vicious.widgets.date, "%a, %Y-%m-%d <span color='w
 -- Create a systray
 mysystray = widget({ type = "systray" })
 
+-- Initialize widget
+cpuwidget = widget({ type = "textbox" })
+-- Register widget
+vicious.register(cpuwidget, vicious.widgets.cpu, "$1%", 5)
+
+-- Initialize widget
+memwidget = widget({ type = "textbox" })
+-- Register widget
+vicious.register(memwidget, vicious.widgets.mem, "$2 / $3 MB", 10)
+
 -- Create a wibox for each screen and add it
 mywibox = {}
 mypromptbox = {}
@@ -166,16 +176,6 @@ mytasklist.buttons = awful.util.table.join(
                                               awful.client.focus.byidx(1)
                                               if client.focus then client.focus:raise() end
                                           end))
-
--- Initialize widget
-cpuwidget = widget({ type = "textbox" })
--- Register widget
-vicious.register(cpuwidget, vicious.widgets.cpu, "$1%", 5)
-
--- Initialize widget
-memwidget = widget({ type = "textbox" })
--- Register widget
-vicious.register(memwidget, vicious.widgets.mem, "$2 / $3 MB", 10)
 
 for s = 1, screen.count() do
     -- Create a promptbox for each screen
