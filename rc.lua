@@ -12,6 +12,29 @@ require("debian.menu")
 
 require("vicious")
 
+solarized = {
+    yellow = '#b58900',
+    orange = '#cb4b16',
+    red = '#dc322f',
+    magenta = '#d33682',
+    violet = '#6c71c4',
+    blue = '#268bd2',
+    cyan = '#2aa198',
+    green = '#859900',
+}
+
+span = {}
+
+for color, hex in pairs(solarized) do
+    span[color] = '<span color="' .. hex .. '">'
+end
+
+endspan = '</span>'
+
+function wrap_with_color(string, color) 
+    return span[color] .. string .. endspan
+end
+
 -- {{{ Error handling
 -- Check if awesome encountered an error during startup and fell back to
 -- another config (This code will only ever execute for the fallback config)
@@ -108,29 +131,29 @@ end
 -- {{{ Wibox
 
 spacer = widget({ type = "textbox" })
-spacer.text = " | "
+spacer.text = "    "
 
--- battery widget
 batwidget = widget({ type = "textbox" })
-vicious.register(batwidget, vicious.widgets.bat, "Akku: $1 <span color='white'>$2%</span> $3", 15, "BAT0")
+vicious.register(batwidget, vicious.widgets.bat, wrap_with_color("$1 <b>$2%</b> $3", 'blue'), 15, "BAT0")
 
--- Create a textclock widget
--- Register widget
 mytextclock = widget({ type = "textbox" })
-vicious.register(mytextclock, vicious.widgets.date, "%a, %Y-%m-%d <span color='white'>%H:%M</span> %z", 10)
+vicious.register(mytextclock, vicious.widgets.date, wrap_with_color("%a, %Y-%m-%d <b>%H:%M</b> %z", 'violet'), 10)
 
--- Create a systray
 mysystray = widget({ type = "systray" })
 
--- Initialize widget
 cpuwidget = widget({ type = "textbox" })
--- Register widget
-vicious.register(cpuwidget, vicious.widgets.cpu, "$1%", 5)
+vicious.register(cpuwidget, vicious.widgets.cpu, wrap_with_color('$1%', 'red'), 3)
 
--- Initialize widget
 memwidget = widget({ type = "textbox" })
--- Register widget
-vicious.register(memwidget, vicious.widgets.mem, "$2 / $3 MB", 10)
+vicious.register(memwidget, vicious.widgets.mem, wrap_with_color('$2 / $3 MB', 'orange'), 5)
+
+netstring = wrap_with_color('${eth0 down_kb} ↓ ${eth0 up_kb} ↑ kB/s', 'yellow')
+netwidget = widget({ type = "textbox" })
+vicious.register(netwidget, vicious.widgets.net, netstring, 3)
+
+fs_string = wrap_with_color('${/ used_gb} / ${/ size_gb} GB', 'green')
+fs_widget = widget({ type = "textbox" })
+vicious.register(fs_widget, vicious.widgets.fs, fs_string, 3)
 
 -- Create a wibox for each screen and add it
 mywibox = {}
@@ -210,6 +233,10 @@ for s = 1, screen.count() do
         mytextclock,
         spacer,
         batwidget,
+        spacer,
+        fs_widget,
+        spacer,
+        netwidget,
         spacer,
         memwidget,
         spacer,
