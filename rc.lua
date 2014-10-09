@@ -104,7 +104,7 @@ assoc = {}
 assoc[tag_for_www] = 'www'
 assoc[tag_for_eml] = 'eml'
 assoc[tag_for_im] = 'im'
-assoc[tag_for_music] = 'music/pim'
+assoc[tag_for_music] = 'pim'
 
 tag_numbers = { 1, 2, 3, 4, 5, '6', '7', '8', '9', '0', '-', '=' }
 tag_names = {}
@@ -142,12 +142,22 @@ vicious.register(mytextclock, vicious.widgets.date, wrap_with_color("%a, %Y-%m-%
 mysystray = widget({ type = "systray" })
 
 cpuwidget = widget({ type = "textbox" })
-vicious.register(cpuwidget, vicious.widgets.cpu, wrap_with_color('$1%', 'red'), 3)
+vicious.register(cpuwidget, vicious.widgets.cpu, wrap_with_color('$1 %', 'red'), 3)
 
 memwidget = widget({ type = "textbox" })
 vicious.register(memwidget, vicious.widgets.mem, wrap_with_color('$2 / $3 MB', 'orange'), 5)
 
-netstring = wrap_with_color('${eth0 down_kb} ↓ ${eth0 up_kb} ↑ kB/s', 'yellow')
+function has_wlan()
+    return os.execute('ifconfig | grep wlan') == 0
+end
+
+if has_wlan() then
+    interface = 'wlan0'
+else
+    interface = 'eth0'
+end
+
+netstring = wrap_with_color(interface ..' <b>${'.. interface ..' down_kb}</b> ↓ <b>${'.. interface ..' up_kb}</b> ↑ kB/s', 'yellow')
 netwidget = widget({ type = "textbox" })
 vicious.register(netwidget, vicious.widgets.net, netstring, 3)
 
