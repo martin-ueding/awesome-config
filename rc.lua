@@ -13,9 +13,9 @@ require("debian.menu")
 require("vicious")
 
 solarized = {
-    yellow = '#b58900',
-    orange = '#cb4b16',
     red = '#dc322f',
+    orange = '#cb4b16',
+    yellow = '#b58900',
     magenta = '#d33682',
     violet = '#6c71c4',
     blue = '#268bd2',
@@ -130,11 +130,14 @@ end
 
 -- {{{ Wibox
 
+-- sunrise_widget = widget({ type = "textbox" })
+-- sunrise_widget.text = wrap_with_color(awful.util.pread("sunrise"), 'blue')
+
 spacer = widget({ type = "textbox" })
 spacer.text = "    "
 
 batwidget = widget({ type = "textbox" })
-vicious.register(batwidget, vicious.widgets.bat, wrap_with_color("$1 <b>$2%</b> $3", 'blue'), 15, "BAT0")
+vicious.register(batwidget, vicious.widgets.bat, wrap_with_color("$1 <b>$2%</b> $3", 'cyan'), 15, "BAT0")
 
 mytextclock = widget({ type = "textbox" })
 vicious.register(mytextclock, vicious.widgets.date, wrap_with_color("%a, %Y-%m-%d <b>%H:%M</b> %z", 'violet'), 10)
@@ -242,6 +245,8 @@ for s = 1, screen.count() do
         spacer,
         mytextclock,
         spacer,
+        -- sunrise_widget,
+        -- spacer,
         batwidget,
         spacer,
         fs_widget,
