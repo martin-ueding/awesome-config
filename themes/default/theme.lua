@@ -80,7 +80,7 @@ function get_wallpaper_name()
     hostname = string.match(uname, "[%w]+[%s]([%w%p]+)[%s][%w%p]+")
 
     return
-    "/home/mu/Bilder/Hintergrundbilder/InterfaceLift/03116_oxtonguerapids_3840x2400.jpg"
+    "/home/mu/.config/wallpaper.jpg"
 end
 
 -- You can use your own command to set your wallpaper
