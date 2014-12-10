@@ -537,3 +537,8 @@ client.add_signal("unfocus", function(c) c.border_color = beautiful.border_norma
 naughty.config.default_preset.timeout = 4
 
 awful.screen.focus(1)
+
+if screen.count() > 1 then
+    awful.tag.setncol(2, tags[1][tag_for_eml])
+    awful.tag.setmwfact(0.37, tags[1][tag_for_eml])
+end
