@@ -137,36 +137,12 @@ spacer = widget({ type = "textbox" })
 spacer.text = "    "
 
 batwidget = widget({ type = "textbox" })
-vicious.register(batwidget, vicious.widgets.bat, wrap_with_color("$1 <b>$2%</b> $3", 'cyan'), 15, "BAT0")
+vicious.register(batwidget, vicious.widgets.bat, wrap_with_color("$1 <b>$2%</b> $3", 'green'), 15, "BAT0")
 
 mytextclock = widget({ type = "textbox" })
-vicious.register(mytextclock, vicious.widgets.date, wrap_with_color("%a, %Y-%m-%d <b>%H:%M</b> %z", 'violet'), 10)
+vicious.register(mytextclock, vicious.widgets.date, wrap_with_color("%a, %Y-%m-%d <b>%H:%M</b> %z", 'blue'), 10)
 
 mysystray = widget({ type = "systray" })
-
-cpuwidget = widget({ type = "textbox" })
-vicious.register(cpuwidget, vicious.widgets.cpu, wrap_with_color('$1 %', 'red'), 3)
-
-memwidget = widget({ type = "textbox" })
-vicious.register(memwidget, vicious.widgets.mem, wrap_with_color('$2 / $3 MB', 'orange'), 5)
-
-function has_wlan()
-    return os.execute('ifconfig | grep wlan') == 0
-end
-
-if has_wlan() then
-    interface = 'wlan0'
-else
-    interface = 'eth0'
-end
-
-netstring = wrap_with_color(interface ..' <b>${'.. interface ..' down_kb}</b> ↓ <b>${'.. interface ..' up_kb}</b> ↑ kB/s', 'yellow')
-netwidget = widget({ type = "textbox" })
-vicious.register(netwidget, vicious.widgets.net, netstring, 3)
-
-fs_string = wrap_with_color('${/ used_gb} / ${/ size_gb} GB', 'green')
-fs_widget = widget({ type = "textbox" })
-vicious.register(fs_widget, vicious.widgets.fs, fs_string, 3)
 
 -- Create a wibox for each screen and add it
 mywibox = {}
@@ -245,17 +221,7 @@ for s = 1, screen.count() do
         spacer,
         mytextclock,
         spacer,
-        -- sunrise_widget,
-        -- spacer,
         batwidget,
-        spacer,
-        fs_widget,
-        spacer,
-        netwidget,
-        spacer,
-        memwidget,
-        spacer,
-        cpuwidget,
         spacer,
         s == 1 and mysystray or nil,
         mytasklist[s],
