@@ -457,6 +457,14 @@ awful.rules.rules = {
         properties = { tag = tags[1][tag_for_im] }
     },
     {
+        rule = { class = "Linphone" },
+        properties = { tag = tags[1][tag_for_im] }
+    },
+    {
+        rule = { class = "Sflphone-client-kde" },
+        properties = { tag = tags[1][tag_for_im] }
+    },
+    {
         rule = { class = "Clementine" },
         properties = { tag = tags[1][tag_for_music] }
     },
