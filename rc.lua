@@ -136,8 +136,26 @@ end
 spacer = widget({ type = "textbox" })
 spacer.text = "    "
 
+function bat_func(widget, data)
+    local state = data[0]
+    local percentage = tonumber(data[2])
+    local time = data[2]
+    local color
+    local span
+
+    if percentage > 30 then
+        span = '<span color="' .. solarized.green .. '">'
+    elseif percentage > 10 then
+        span = '<span color="black" bgcolor="' .. solarized.yellow .. '">'
+    else
+        span = '<span color="black" bgcolor="' .. solarized.red .. '">'
+    end
+
+    return span .. vicious.helpers.format('$1 <b>$2%</b> $3', data) .. endspan
+end
+
 batwidget = widget({ type = "textbox" })
-vicious.register(batwidget, vicious.widgets.bat, wrap_with_color("$1 <b>$2%</b> $3", 'green'), 15, "BAT0")
+vicious.register(batwidget, vicious.widgets.bat, bat_func, 15, "BAT0")
 
 mytextclock = widget({ type = "textbox" })
 vicious.register(mytextclock, vicious.widgets.date, wrap_with_color("%a, %Y-%m-%d <b>%H:%M</b> %z", 'blue'), 10)
