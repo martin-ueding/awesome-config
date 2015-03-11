@@ -143,7 +143,7 @@ function bat_func(widget, data)
     local color
     local span
 
-    if percentage > 30 then
+    if percentage > 30 or state ~= '-' then
         span = '<span color="' .. solarized.green .. '">'
     elseif percentage > 10 then
         span = '<span color="black" bgcolor="' .. solarized.yellow .. '">'
