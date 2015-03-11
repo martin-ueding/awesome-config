@@ -137,7 +137,7 @@ spacer = widget({ type = "textbox" })
 spacer.text = "    "
 
 function bat_func(widget, data)
-    local state = data[0]
+    local state = data[1]
     local percentage = tonumber(data[2])
     local time = data[2]
     local color
