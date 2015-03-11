@@ -181,7 +181,7 @@ batwidget = widget({ type = "textbox" })
 vicious.register(batwidget, vicious.widgets.bat, bat_func, 15, "BAT0")
 
 netwidget = widget({ type = "textbox" })
-vicious.register(netwidget, vicious.widgets.net, net_widget_function, 3)
+vicious.register(netwidget, vicious.widgets.net, net_widget_function, 2)
 
 mytextclock = widget({ type = "textbox" })
 vicious.register(mytextclock, vicious.widgets.date, wrap_with_color("%a, %Y-%m-%d <b>%H:%M</b> %z", 'blue'), 10)
