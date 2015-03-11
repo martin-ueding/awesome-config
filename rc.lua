@@ -161,7 +161,7 @@ function net_widget_function(widget, data)
     if data['{eth0 up_kb}'] ~= nil and data['{eth0 down_kb}'] ~= nil
         and data['{eth0 up_kb}'] ~= '0.0' and data['{eth0 down_kb}'] ~= '0.0'
         then
-        result = result .. vicious.helpers.format('eth0: ${eth0 down_kb} ↓ ${eth0 up_kb} ↑ KiB/s', data)
+        result = result .. vicious.helpers.format('eth0: ${eth0 down_kb} ↓ ${eth0 up_kb} ↑ kB/s', data)
         need_space = true
     end
 
@@ -171,7 +171,7 @@ function net_widget_function(widget, data)
         if need_space then
             result = result .. ' '
         end
-        result = result .. vicious.helpers.format('wlan0: ${wlan0 down_kb} ↓ ${wlan0 up_kb} ↑ KiB/s', data)
+        result = result .. vicious.helpers.format('wlan0: ${wlan0 down_kb} ↓ ${wlan0 up_kb} ↑ kB/s', data)
     end
 
     return wrap_with_color(result, 'cyan')
