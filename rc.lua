@@ -154,8 +154,34 @@ function bat_func(widget, data)
     return span .. vicious.helpers.format('$1 <b>$2%</b> $3', data) .. endspan
 end
 
+function net_widget_function(widget, data)
+    local result = ''
+    local need_space = false
+
+    if data['{eth0 up_kb}'] ~= nil and data['{eth0 down_kb}'] ~= nil
+        and data['{eth0 up_kb}'] ~= '0.0' and data['{eth0 down_kb}'] ~= '0.0'
+        then
+        result = result .. vicious.helpers.format('eth0: ${eth0 up_kb} ↑ ${eth0 down_kb} ↓ ', data)
+        need_space = true
+    end
+
+    if data['{wlan0 up_kb}'] ~= nil and data['{wlan0 down_kb}'] ~= nil
+        and data['{wlan0 up_kb}'] ~= '0.0' and data['{wlan0 down_kb}'] ~= '0.0'
+        then
+        if need_space then
+            result = result .. ' '
+        end
+        result = result .. vicious.helpers.format('wlan0: ${wlan0 up_kb} ↑ ${wlan0 down_kb} ↓ ', data)
+    end
+
+    return wrap_with_color(result, 'cyan')
+end
+
 batwidget = widget({ type = "textbox" })
 vicious.register(batwidget, vicious.widgets.bat, bat_func, 15, "BAT0")
+
+netwidget = widget({ type = "textbox" })
+vicious.register(netwidget, vicious.widgets.net, net_widget_function, 3)
 
 mytextclock = widget({ type = "textbox" })
 vicious.register(mytextclock, vicious.widgets.date, wrap_with_color("%a, %Y-%m-%d <b>%H:%M</b> %z", 'blue'), 10)
@@ -240,6 +266,8 @@ for s = 1, screen.count() do
         mytextclock,
         spacer,
         batwidget,
+        spacer,
+        netwidget,
         spacer,
         s == 1 and mysystray or nil,
         mytasklist[s],
