@@ -174,7 +174,7 @@ function net_widget_function(widget, data)
         result = result .. vicious.helpers.format('wlan0: ${wlan0 down_kb} ↓ ${wlan0 up_kb} ↑ kB/s', data)
     end
 
-    return wrap_with_color(result, 'cyan')
+    return wrap_with_color(result, 'blue')
 end
 
 batwidget = widget({ type = "textbox" })
