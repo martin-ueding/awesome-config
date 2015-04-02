@@ -159,7 +159,7 @@ function if_active(data, iface)
 end
 
 function if_format(data, iface)
-    return vicious.helpers.format('' .. iface .. ': ${' .. iface .. ' down_kb} ↓ ${' .. iface .. ' up_kb} ↑ kB/s', data)
+    return vicious.helpers.format(iface .. ': ${' .. iface .. ' down_kb} ↓ ${' .. iface .. ' up_kb} ↑ kB/s', data)
 end
 
 function net_widget_function(widget, data)
