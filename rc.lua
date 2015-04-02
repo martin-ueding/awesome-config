@@ -164,8 +164,7 @@ end
 
 function net_widget_function(widget, data)
     local snippets = {}
-    -- XXX Get list of interfaces dynamically.
-    local ifaces = {'eth0', 'wlan0', 'lo', 'vibr0'}
+    local ifaces = {'eth0', 'wlan0', 'vibr0'}
 
     for ignored, iface in pairs(ifaces) do
         if if_active(data, iface) then
