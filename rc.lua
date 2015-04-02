@@ -163,22 +163,16 @@ function if_format(data, iface)
 end
 
 function net_widget_function(widget, data)
-    local result = ''
-    local need_space = false
+    local snippets = {}
+    local ifaces = {'eth0', 'wlan0'}
 
-    if if_active(data, 'eth0')
-        then
-        result = result .. if_format(data, 'eth0')
-        need_space = true
-    end
-
-    if if_active(data, 'wlan0')
-        then
-        if need_space then
-            result = result .. ' '
+    for ignored, iface in pairs(ifaces) do
+        if if_active(data, iface) then
+            table.insert(snippets, if_format(data, iface))
         end
-        result = result .. if_format(data, 'wlan0')
     end
+
+    local result = table.concat(snippets, ' ')
 
     return wrap_with_color(result, 'blue')
 end
