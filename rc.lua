@@ -154,24 +154,30 @@ function bat_func(widget, data)
     return span .. vicious.helpers.format('$1 <b>$2%</b> $3', data) .. endspan
 end
 
+function if_active(data, iface)
+    return data['{' .. iface .. ' up_kb}'] ~= nil and data['{' .. iface .. ' down_kb}'] ~= nil and data['{' .. iface .. ' up_kb}'] ~= '0.0' and data['{' .. iface .. ' down_kb}'] ~= '0.0'
+end
+
+function if_format(data, iface)
+    return vicious.helpers.format('' .. iface .. ': ${' .. iface .. ' down_kb} ↓ ${' .. iface .. ' up_kb} ↑ kB/s', data)
+end
+
 function net_widget_function(widget, data)
     local result = ''
     local need_space = false
 
-    if data['{eth0 up_kb}'] ~= nil and data['{eth0 down_kb}'] ~= nil
-        and data['{eth0 up_kb}'] ~= '0.0' and data['{eth0 down_kb}'] ~= '0.0'
+    if if_active(data, 'eth0')
         then
-        result = result .. vicious.helpers.format('eth0: ${eth0 down_kb} ↓ ${eth0 up_kb} ↑ kB/s', data)
+        result = result .. if_format(data, 'eth0')
         need_space = true
     end
 
-    if data['{wlan0 up_kb}'] ~= nil and data['{wlan0 down_kb}'] ~= nil
-        and data['{wlan0 up_kb}'] ~= '0.0' and data['{wlan0 down_kb}'] ~= '0.0'
+    if if_active(data, 'wlan0')
         then
         if need_space then
             result = result .. ' '
         end
-        result = result .. vicious.helpers.format('wlan0: ${wlan0 down_kb} ↓ ${wlan0 up_kb} ↑ kB/s', data)
+        result = result .. if_format(data, 'wlan0')
     end
 
     return wrap_with_color(result, 'blue')
