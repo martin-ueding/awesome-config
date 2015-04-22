@@ -172,9 +172,14 @@ function net_widget_function(widget, data)
         end
     end
 
-    local result = table.concat(snippets, ' ')
+    if #snippets > 0 then
+        local result = table.concat(snippets, ' ')
+        result = result .. spacer.text
+        return wrap_with_color(result, 'blue')
+    else
+        return ''
+    end
 
-    return wrap_with_color(result, 'blue')
 end
 
 batwidget = widget({ type = "textbox" })
@@ -266,7 +271,6 @@ for s = 1, screen.count() do
         mytextclock,
         spacer,
         batwidget,
-        spacer,
         netwidget,
         spacer,
         s == 1 and mysystray or nil,
