@@ -179,7 +179,6 @@ function net_widget_function(widget, data)
     else
         return ''
     end
-
 end
 
 batwidget = widget({ type = "textbox" })
