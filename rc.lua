@@ -181,6 +181,33 @@ function net_widget_function(widget, data)
     end
 end
 
+function dio_active(data, dev)
+    return data['{' .. dev .. ' read_mb}'] ~= nil and data['{' .. dev .. ' write_mb}'] ~= nil and data['{' .. dev .. ' read_mb}'] ~= '0.0' and data['{' .. dev .. ' write_mb}'] ~= '0.0'
+end
+
+function dio_format(data, dev)
+    return vicious.helpers.format(dev .. ': ${' .. dev .. ' write_mb} ↓ ${' .. dev .. ' read_mb} ↑ MB/s', data)
+end
+
+function dio_widget_function(widget, data)
+    local snippets = {}
+    local devs = {'sda', 'sdb', 'sdc', 'sdd'}
+
+    for ignored, dev in pairs(devs) do
+        if dio_active(data, dev) then
+            table.insert(snippets, dio_format(data, dev))
+        end
+    end
+
+    if #snippets > 0 then
+        local result = table.concat(snippets, spacer.text)
+        result = result .. spacer.text
+        return wrap_with_color(result, 'cyan')
+    else
+        return ''
+    end
+end
+
 function widget_printer(entity, format, index, limit_show, limit_bad, limit_critical)
     function formatter(widget, data)
         local snippets = {}
@@ -214,6 +241,9 @@ vicious.register(batwidget, vicious.widgets.bat, bat_func, 15, "BAT0")
 
 netwidget = widget({ type = "textbox" })
 vicious.register(netwidget, vicious.widgets.net, net_widget_function, 2)
+
+diowidget = widget({ type = "textbox" })
+vicious.register(diowidget, vicious.widgets.dio, dio_widget_function, 2)
 
 cpuwidget = widget({ type = "textbox" })
 vicious.register(cpuwidget, vicious.widgets.cpu, widget_printer('CPU', '$1 %', 1, 20, 80, 90), 2)
@@ -305,6 +335,7 @@ for s = 1, screen.count() do
         spacer,
         batwidget,
         netwidget,
+        diowidget,
         memwidget,
         cpuwidget,
         spacer,
