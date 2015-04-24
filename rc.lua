@@ -173,7 +173,7 @@ function net_widget_function(widget, data)
     end
 
     if #snippets > 0 then
-        local result = table.concat(snippets, ' ')
+        local result = table.concat(snippets, spacer.text)
         result = result .. spacer.text
         return wrap_with_color(result, 'blue')
     else
