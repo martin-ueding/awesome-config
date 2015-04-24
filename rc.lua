@@ -218,9 +218,9 @@ function widget_printer(entity, format, index, limit_show, limit_bad, limit_crit
             if indicator >= limit_critical then
                 span = '<span color="black" bgcolor="' .. solarized.red .. '">'
             elseif indicator >= limit_bad then
-                span = '<span color="black" bgcolor="' .. solarized.yellow .. '">'
+                span = '<span color="black" bgcolor="' .. solarized.orange .. '">'
             else
-                span = '<span color="' .. solarized.green .. '">'
+                span = '<span color="' .. solarized.yellow .. '">'
             end
 
             table.insert(snippets, span)
