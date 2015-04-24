@@ -181,11 +181,45 @@ function net_widget_function(widget, data)
     end
 end
 
+function widget_printer(entity, format, index, limit_show, limit_bad, limit_critical)
+    function formatter(widget, data)
+        local snippets = {}
+        local indicator = tonumber(data[index])
+        if indicator >= limit_show then
+            local span
+
+            if indicator >= limit_critical then
+                span = '<span color="black" bgcolor="' .. solarized.red .. '">'
+            elseif indicator >= limit_bad then
+                span = '<span color="black" bgcolor="' .. solarized.yellow .. '">'
+            else
+                span = '<span color="' .. solarized.green .. '">'
+            end
+
+            table.insert(snippets, span)
+            table.insert(snippets, entity .. ': ')
+            table.insert(snippets, vicious.helpers.format(format, data))
+            table.insert(snippets, '</span>')
+            table.insert(snippets, spacer.text)
+        end
+        local result = table.concat(snippets, '')
+        return result
+    end
+
+    return formatter
+end
+
 batwidget = widget({ type = "textbox" })
 vicious.register(batwidget, vicious.widgets.bat, bat_func, 15, "BAT0")
 
 netwidget = widget({ type = "textbox" })
 vicious.register(netwidget, vicious.widgets.net, net_widget_function, 2)
+
+cpuwidget = widget({ type = "textbox" })
+vicious.register(cpuwidget, vicious.widgets.cpu, widget_printer('CPU', '$1 %', 1, 20, 80, 90), 2)
+
+memwidget = widget({ type = "textbox" })
+vicious.register(memwidget, vicious.widgets.mem, widget_printer('RAM', '$2 / $3 MB', 1, 50, 80, 90), 5)
 
 mytextclock = widget({ type = "textbox" })
 vicious.register(mytextclock, vicious.widgets.date, wrap_with_color("%a, %Y-%m-%d <b>%H:%M</b> %z", 'blue'), 10)
@@ -271,6 +305,8 @@ for s = 1, screen.count() do
         spacer,
         batwidget,
         netwidget,
+        memwidget,
+        cpuwidget,
         spacer,
         s == 1 and mysystray or nil,
         mytasklist[s],
