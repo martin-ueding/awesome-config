@@ -246,7 +246,7 @@ diowidget = widget({ type = "textbox" })
 vicious.register(diowidget, vicious.widgets.dio, dio_widget_function, 2)
 
 cpuwidget = widget({ type = "textbox" })
-vicious.register(cpuwidget, vicious.widgets.cpu, widget_printer('CPU', '$1 %', 1, 20, 80, 90), 2)
+vicious.register(cpuwidget, vicious.widgets.cpu, widget_printer('CPU', '$1 %', 1, 20, 90, 101), 2)
 
 memwidget = widget({ type = "textbox" })
 vicious.register(memwidget, vicious.widgets.mem, widget_printer('RAM', '$2 / $3 MB', 1, 50, 80, 90), 5)
