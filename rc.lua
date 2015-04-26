@@ -158,12 +158,21 @@ function bat_func(widget, data)
     return span .. vicious.helpers.format('$1 <b>$2%</b> $3', data) .. endspan
 end
 
+function if_exists(data, iface)
+    return data['{' .. iface .. ' up_kb}'] ~= nil and data['{' .. iface .. ' down_kb}'] ~= nil
+end
+
 function if_active(data, iface)
-    return data['{' .. iface .. ' up_kb}'] ~= nil and data['{' .. iface .. ' down_kb}'] ~= nil and data['{' .. iface .. ' up_kb}'] ~= '0.0' and data['{' .. iface .. ' down_kb}'] ~= '0.0'
+    return data['{' .. iface .. ' up_kb}'] ~= '0.0' and data['{' .. iface .. ' down_kb}'] ~= '0.0'
 end
 
 function if_format(data, iface)
-    return vicious.helpers.format(iface .. ': ${' .. iface .. ' down_kb} ↓ ${' .. iface .. ' up_kb} ↑ kB/s', data)
+    local string = vicious.helpers.format(iface .. ': ${' .. iface .. ' down_kb} ↓ ${' .. iface .. ' up_kb} ↑ kB/s', data)
+    if if_active(data, iface) then
+        return wrap_with_color(string, 'blue')
+    else
+        return wrap_with_color(string, 'base01')
+    end
 end
 
 function net_widget_function(widget, data)
@@ -171,26 +180,34 @@ function net_widget_function(widget, data)
     local ifaces = {'eth0', 'wlan0', 'vibr0'}
 
     for ignored, iface in pairs(ifaces) do
-        if if_active(data, iface) then
+        if if_exists(data, iface) then
             table.insert(snippets, if_format(data, iface))
         end
     end
 
     if #snippets > 0 then
         local result = table.concat(snippets, spacer.text)
-        result = result .. spacer.text
-        return wrap_with_color(result, 'blue')
+        return result .. spacer.text
     else
         return ''
     end
 end
 
+function dio_exists(data, dev)
+    return data['{' .. dev .. ' read_mb}'] ~= nil and data['{' .. dev .. ' write_mb}'] ~= nil
+end
+
 function dio_active(data, dev)
-    return data['{' .. dev .. ' read_mb}'] ~= nil and data['{' .. dev .. ' write_mb}'] ~= nil and data['{' .. dev .. ' read_mb}'] ~= '0.0' and data['{' .. dev .. ' write_mb}'] ~= '0.0'
+    return data['{' .. dev .. ' read_mb}'] ~= '0.0' and data['{' .. dev .. ' write_mb}'] ~= '0.0'
 end
 
 function dio_format(data, dev)
-    return vicious.helpers.format(dev .. ': ${' .. dev .. ' write_mb} ↓ ${' .. dev .. ' read_mb} ↑ MB/s', data)
+    local string = vicious.helpers.format(dev .. ': ${' .. dev .. ' write_mb} ↓ ${' .. dev .. ' read_mb} ↑ MB/s', data)
+    if dio_active(data, dev) then
+        return wrap_with_color(string, 'cyan')
+    else
+        return wrap_with_color(string, 'base01')
+    end
 end
 
 function dio_widget_function(widget, data)
@@ -198,15 +215,14 @@ function dio_widget_function(widget, data)
     local devs = {'sda', 'sdb', 'sdc', 'sdd'}
 
     for ignored, dev in pairs(devs) do
-        if dio_active(data, dev) then
+        if dio_exists(data, dev) then
             table.insert(snippets, dio_format(data, dev))
         end
     end
 
     if #snippets > 0 then
         local result = table.concat(snippets, spacer.text)
-        result = result .. spacer.text
-        return wrap_with_color(result, 'cyan')
+        return result .. spacer.text
     else
         return ''
     end
