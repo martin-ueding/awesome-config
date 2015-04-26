@@ -21,6 +21,10 @@ solarized = {
     blue = '#268bd2',
     cyan = '#2aa198',
     green = '#859900',
+    base01 = '#586e75',
+    base02 = '#073642',
+    base0 = '#839496',
+    base1 = '#93a1a1',
 }
 
 span = {}
@@ -212,23 +216,23 @@ function widget_printer(entity, format, index, limit_show, limit_bad, limit_crit
     function formatter(widget, data)
         local snippets = {}
         local indicator = tonumber(data[index])
-        if indicator >= limit_show then
-            local span
+        local span
 
-            if indicator >= limit_critical then
-                span = '<span color="black" bgcolor="' .. solarized.red .. '">'
-            elseif indicator >= limit_bad then
-                span = '<span color="black" bgcolor="' .. solarized.orange .. '">'
-            else
-                span = '<span color="' .. solarized.yellow .. '">'
-            end
-
-            table.insert(snippets, span)
-            table.insert(snippets, entity .. ': ')
-            table.insert(snippets, vicious.helpers.format(format, data))
-            table.insert(snippets, '</span>')
-            table.insert(snippets, spacer.text)
+        if indicator >= limit_critical then
+            span = '<span color="black" bgcolor="' .. solarized.red .. '">'
+        elseif indicator >= limit_bad then
+            span = '<span color="black" bgcolor="' .. solarized.orange .. '">'
+        elseif indicator >= limit_show then
+            span = '<span color="' .. solarized.yellow .. '">'
+        else
+            span = '<span color="' .. solarized.base01 .. '">'
         end
+
+        table.insert(snippets, span)
+        table.insert(snippets, entity .. ': ')
+        table.insert(snippets, vicious.helpers.format(format, data))
+        table.insert(snippets, '</span>')
+        table.insert(snippets, spacer.text)
         local result = table.concat(snippets, '')
         return result
     end
