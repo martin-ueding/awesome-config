@@ -176,18 +176,30 @@ function if_format(data, iface)
 end
 
 function net_widget_function(widget, data)
+    local last_shown = nil
     local snippets = {}
     local ifaces = {'eth0', 'wlan0', 'vibr0'}
 
+    -- Compile a list of active interfaces
+    local active_ifaces = {}
     for ignored, iface in pairs(ifaces) do
-        if if_exists(data, iface) then
-            table.insert(snippets, if_format(data, iface))
+        if if_active(data, iface) then
+            table.insert(active_ifaces, iface)
         end
     end
 
-    if #snippets > 0 then
-        local result = table.concat(snippets, spacer.text)
-        return result .. spacer.text
+    local to_show = ''
+    if last_shown ~= nil and if_active(data, last_shown) then
+        to_show = last_shown
+    elseif #active_ifaces > 0 then
+        to_show = active_ifaces[1]
+    else
+        to_show = nil
+    end
+    last_shown = to_show
+
+    if to_show ~= nil then
+        return if_format(data, to_show) .. spacer.text
     else
         return ''
     end
