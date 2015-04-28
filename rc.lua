@@ -104,20 +104,8 @@ tag_for_im = 12
 tag_for_music = 11
 tag_for_www = 9
 
-assoc = {}
-assoc[tag_for_www] = 'www'
-assoc[tag_for_eml] = 'eml'
-assoc[tag_for_im] = 'im'
-assoc[tag_for_music] = 'pim'
-
 tag_numbers = { 1, 2, 3, 4, 5, '6', '7', '8', '9', '0', '-', '=' }
-tag_names = {}
-for i = 1, #tag_numbers do
-    tag_names[i] = tag_numbers[i]
-    if assoc[i] ~= nil then
-        tag_names[i] = tag_names[i] .. ":" .. assoc[i]
-    end
-end
+tag_names = tag_numbers
 
 tags = {}
 tags[1] = awful.tag(
@@ -225,7 +213,7 @@ end
 
 function dio_widget_function(widget, data)
     local snippets = {}
-    local devs = {'sda', 'sdb', 'sdc', 'sdd'}
+    local devs = {'sda', 'sdc', 'sdd'}
 
     for ignored, dev in pairs(devs) do
         if dio_exists(data, dev) then
