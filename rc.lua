@@ -175,15 +175,16 @@ function if_format(data, iface)
     end
 end
 
+last_shown = nil
+
 function net_widget_function(widget, data)
-    local last_shown = nil
     local snippets = {}
     local ifaces = {'eth0', 'wlan0', 'vibr0'}
 
     -- Compile a list of active interfaces
     local active_ifaces = {}
     for ignored, iface in pairs(ifaces) do
-        if if_active(data, iface) then
+        if if_exists(data, iface) and if_active(data, iface) then
             table.insert(active_ifaces, iface)
         end
     end
@@ -194,7 +195,7 @@ function net_widget_function(widget, data)
     elseif #active_ifaces > 0 then
         to_show = active_ifaces[1]
     else
-        to_show = nil
+        to_show = ifaces[1]
     end
     last_shown = to_show
 
@@ -281,7 +282,7 @@ cpuwidget = widget({ type = "textbox" })
 vicious.register(cpuwidget, vicious.widgets.cpu, widget_printer('CPU', '$1 %', 1, 20, 90, 101), 2)
 
 memwidget = widget({ type = "textbox" })
-vicious.register(memwidget, vicious.widgets.mem, widget_printer('RAM', '$2 / $3 MB', 1, 50, 80, 90), 5)
+vicious.register(memwidget, vicious.widgets.mem, widget_printer('RAM', '$2 / $3 MB', 1, 75, 85, 95), 5)
 
 mytextclock = widget({ type = "textbox" })
 vicious.register(mytextclock, vicious.widgets.date, wrap_with_color("%a, %Y-%m-%d <b>%H:%M</b> %z", 'blue'), 10)
