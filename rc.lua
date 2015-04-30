@@ -151,7 +151,7 @@ function if_exists(data, iface)
 end
 
 function if_active(data, iface)
-    return data['{' .. iface .. ' up_kb}'] ~= '0.0' and data['{' .. iface .. ' down_kb}'] ~= '0.0'
+    return data['{' .. iface .. ' up_kb}'] ~= '0.0' or data['{' .. iface .. ' down_kb}'] ~= '0.0'
 end
 
 function if_format(data, iface)
@@ -199,7 +199,7 @@ function dio_exists(data, dev)
 end
 
 function dio_active(data, dev)
-    return data['{' .. dev .. ' read_mb}'] ~= '0.0' and data['{' .. dev .. ' write_mb}'] ~= '0.0'
+    return data['{' .. dev .. ' read_mb}'] ~= '0.0' or data['{' .. dev .. ' write_mb}'] ~= '0.0'
 end
 
 function dio_format(data, dev)
