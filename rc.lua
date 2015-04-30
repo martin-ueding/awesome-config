@@ -653,3 +653,5 @@ if screen.count() > 1 then
     awful.tag.setncol(2, tags[1][tag_for_eml])
     awful.tag.setmwfact(0.37, tags[1][tag_for_eml])
 end
+
+awful.util.spawn_with_shell("mu-wakup")
