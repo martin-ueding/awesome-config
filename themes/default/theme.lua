@@ -79,12 +79,11 @@ function get_wallpaper_name()
     f:close()
     hostname = string.match(uname, "[%w]+[%s]([%w%p]+)[%s][%w%p]+")
 
-    return
-    "/home/mu/.config/wallpaper.jpg"
+    return "/home/mu/.config/wallpaper.jpg"
 end
 
 -- You can use your own command to set your wallpaper
--- theme.wallpaper_cmd = { "awsetbg " .. get_wallpaper_name() }
+theme.wallpaper_cmd = { "awsetbg " .. get_wallpaper_name() }
 
 -- You can use your own layout icons like this:
 theme.layout_fairh = "/usr/share/awesome/themes/default/layouts/fairhw.png"
