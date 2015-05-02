@@ -426,7 +426,8 @@ globalkeys = awful.util.table.join(
     -- Prompt
     awful.key({ modkey },            "r",     function () mypromptbox[mouse.screen]:run() end),
 
-    awful.key({ modkey },            "d",     function () awful.util.spawn("dolphin") end)
+    awful.key({ modkey },            "d",     function () awful.util.spawn("dolphin") end),
+    awful.key({ modkey },            "F12",     function () awful.util.spawn("lock-and-off") end)
 )
 
 function wrapped_kill(client)
