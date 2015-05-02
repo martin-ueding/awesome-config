@@ -569,6 +569,10 @@ awful.rules.rules = {
         end,
     },
     {
+        rule = { class = "plasmashell" },
+        properties = { minimized = true },
+    },
+    {
         rule = { class = "Firefox" },
         properties = { tag = tags[1][tag_for_www] }
     },
