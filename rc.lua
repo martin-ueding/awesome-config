@@ -11,7 +11,7 @@ local beautiful = require("beautiful")
 local naughty = require("naughty")
 local menubar = require("menubar")
 
-require("vicious")
+local vicious = require("vicious")
 
 solarized = {
     red = '#dc322f',
