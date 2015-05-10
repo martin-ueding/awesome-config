@@ -152,7 +152,7 @@ function bat_func(widget, data)
         span = '<span color="black" bgcolor="' .. solarized.red .. '">'
     end
 
-    return span .. vicious.helpers.format('$1 <b>$2%</b> $3', data) .. endspan
+    return span .. vicious.helpers.format('$1 <b>$2%</b> $3', data) .. endspan .. spacer.text
 end
 
 function if_exists(data, iface)
