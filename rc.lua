@@ -67,11 +67,11 @@ end
 
 -- {{{ Variable definitions
 -- Themes define colours, icons, font and wallpapers.
-beautiful.init("/usr/local/share/awesome/themes/default/theme.lua")
---beautiful.init("/home/mu/.config/awesome/themes/default/theme.lua")
+--beautiful.init("/usr/local/share/awesome/themes/default/theme.lua")
+beautiful.init("/home/mu/.config/awesome/themes/default/theme.lua")
 
 -- This is used later as the default terminal and editor to run.
-terminal = "xterm"
+terminal = "konsole"
 editor = os.getenv("EDITOR") or "nano"
 editor_cmd = terminal .. " -e " .. editor
 
@@ -611,10 +611,10 @@ awful.rules.rules = {
             c:geometry( { width = 600 , height = 500 } )
         end,
     },
-    {
-        rule = { class = "plasmashell" },
-        properties = { minimized = true },
-    },
+--    {
+--        rule = { class = "plasmashell" },
+--        properties = { minimized = true },
+--    },
     {
         rule = { class = "Firefox" },
         properties = { tag = tags[1][tag_for_www] }
