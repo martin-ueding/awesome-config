@@ -134,7 +134,7 @@ end
 -- sunrise_widget = widget({ type = "textbox" })
 -- sunrise_widget.text = wrap_with_color(awful.util.pread("sunrise"), 'blue')
 
-spacer = widget({ type = "textbox" })
+spacer = wibox.widget.textbox()
 spacer.text = "    "
 
 function bat_func(widget, data)
@@ -266,31 +266,31 @@ function widget_printer(entity, format, index, limit_show, limit_bad, limit_crit
     return formatter
 end
 
-batwidget = awful.widget.textbox()
+batwidget = wibox.widget.textbox()
 vicious.register(batwidget, vicious.widgets.bat, bat_func, 15, "BAT0")
 
-netwidget = awful.widget.textbox()
+netwidget = wibox.widget.textbox()
 vicious.register(netwidget, vicious.widgets.net, net_widget_function, 2)
 
-diowidget = awful.widget.textbox()
+diowidget = wibox.widget.textbox()
 vicious.register(diowidget, vicious.widgets.dio, dio_widget_function, 2)
 
-cpuwidget = awful.widget.textbox()
+cpuwidget = wibox.widget.textbox()
 vicious.register(cpuwidget, vicious.widgets.cpu, widget_printer('CPU', '$1 %', 1, 20, 90, 101), 2)
 
-memwidget = awful.widget.textbox()
+memwidget = wibox.widget.textbox()
 vicious.register(memwidget, vicious.widgets.mem, widget_printer('RAM', '$2 / $3 MB', 1, 75, 85, 95), 5)
 
-mytextclock = awful.widget.textbox()
+mytextclock = wibox.widget.textbox()
 vicious.register(mytextclock, vicious.widgets.date, wrap_with_color("%a, %Y-%m-%d <b>%H:%M</b> %z", 'blue'), 10)
 
-mysystray = awful.widget.systray()
+mysystray = wibox.widget.systray()
 -- Menubar configuration
 menubar.utils.terminal = terminal -- Set the terminal for applications that require it
 -- }}}
 
 -- Keyboard map indicator and switcher
--- mykeyboardlayout = awful.widget.keyboardlayout()
+-- mykeyboardlayout = wibox.widget.keyboardlayout()
 
 -- Create a wibox for each screen and add it
 mywibox = {}
@@ -365,7 +365,7 @@ for s = 1, screen.count() do
     -- Widgets that are aligned to the left
     local left_layout = wibox.layout.fixed.horizontal()
     left_layout:add(mytaglist[s])
-    left_layout:add(mypromptbox[s])
+    --left_layout:add(mypromptbox[s])
 
     -- Widgets that are aligned to the right
     local right_layout = wibox.layout.fixed.horizontal()
@@ -738,7 +738,7 @@ client.connect_signal("focus", function(c) c.border_color = beautiful.border_foc
 client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_normal end)
 -- }}}
 
-naughty.config.default_preset.timeout = 4
+-- naughty.config.default_preset.timeout = 4
 
 awful.screen.focus(1)
 
