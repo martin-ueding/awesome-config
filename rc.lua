@@ -587,7 +587,7 @@ awful.rules.rules = {
                     c:tags({tags[c.screen][1]})
                 else
                     c.screen = 1
-                    c:tags({tags[c.screen][1]})
+                    --c:tags({tags[c.screen][1]})
                 end
             end
         }
