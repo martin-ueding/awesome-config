@@ -134,8 +134,7 @@ end
 -- sunrise_widget = widget({ type = "textbox" })
 -- sunrise_widget.text = wrap_with_color(awful.util.pread("sunrise"), 'blue')
 
-spacer = wibox.widget.textbox()
-spacer.text = "    "
+spacer = "   "
 
 function bat_func(widget, data)
     local state = data[1]
@@ -152,7 +151,7 @@ function bat_func(widget, data)
         span = '<span color="black" bgcolor="' .. solarized.red .. '">'
     end
 
-    return span .. vicious.helpers.format('$1 <b>$2%</b> $3', data) .. endspan .. spacer.text
+    return span .. vicious.helpers.format('$1 <b>$2%</b> $3', data) .. endspan .. spacer
 end
 
 function if_exists(data, iface)
@@ -197,7 +196,7 @@ function net_widget_function(widget, data)
     last_shown = to_show
 
     if to_show ~= nil then
-        return if_format(data, to_show) .. spacer.text
+        return if_format(data, to_show) .. spacer
     else
         return ''
     end
@@ -231,8 +230,8 @@ function dio_widget_function(widget, data)
     end
 
     if #snippets > 0 then
-        local result = table.concat(snippets, spacer.text)
-        return result .. spacer.text
+        local result = table.concat(snippets, spacer)
+        return result .. spacer
     else
         return ''
     end
@@ -258,7 +257,7 @@ function widget_printer(entity, format, index, limit_show, limit_bad, limit_crit
         table.insert(snippets, entity .. ': ')
         table.insert(snippets, vicious.helpers.format(format, data))
         table.insert(snippets, '</span>')
-        table.insert(snippets, spacer.text)
+        table.insert(snippets, spacer)
         local result = table.concat(snippets, '')
         return result
     end
@@ -282,7 +281,7 @@ memwidget = wibox.widget.textbox()
 vicious.register(memwidget, vicious.widgets.mem, widget_printer('RAM', '$2 / $3 MB', 1, 75, 85, 95), 5)
 
 mytextclock = wibox.widget.textbox()
-vicious.register(mytextclock, vicious.widgets.date, wrap_with_color("%a, %Y-%m-%d <b>%H:%M</b> %z", 'blue'), 10)
+vicious.register(mytextclock, vicious.widgets.date, wrap_with_color("%a, %Y-%m-%d <b>%H:%M</b> %z" .. spacer, 'blue'), 10)
 
 mysystray = wibox.widget.systray()
 -- Menubar configuration
