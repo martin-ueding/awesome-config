@@ -449,6 +449,7 @@ globalkeys = awful.util.table.join(
 
     awful.key({ modkey },            "d",     function () awful.util.spawn("dolphin") end),
     awful.key({ modkey },            "F12",     function () awful.util.spawn("lock-and-off") end),
+    awful.key({ },            "XF86TaskPane",     function () awful.util.spawn("thinkpad-rotate") end),
     awful.key({ modkey }, "x",
               function ()
                   awful.prompt.run({ prompt = "Run Lua code: " },
