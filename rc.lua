@@ -583,7 +583,7 @@ awful.rules.rules = {
             buttons = clientbuttons,
             callback = function(c)
                 if c.class == "Xournal" then
-                    c.screen = 2
+                    c.screen = screen.count()
                     c:tags({tags[c.screen][1]})
                 else
                     c.screen = 1
