@@ -458,7 +458,8 @@ globalkeys = awful.util.table.join(
                   awful.util.getdir("cache") .. "/history_eval")
               end),
     -- Menubar
-    awful.key({ modkey }, "p", function() menubar.show() end)
+    awful.key({ modkey }, "p", function() menubar.show() end),
+    awful.key({"Control", "Shift", "Alt"}, "PageDown", function () awful.util.spawn_with_shell("systemctl poweroff") end)
 )
 
 function wrapped_kill(client)
@@ -580,16 +581,7 @@ awful.rules.rules = {
             keys = clientkeys,
             maximized_vertical = false,
             maximized_horizontal = false,
-            buttons = clientbuttons,
-            callback = function(c)
-                if c.class == "Xournal" then
-                    c.screen = screen.count()
-                    c:tags({tags[c.screen][1]})
-                else
-                    c.screen = 1
-                    --c:tags({tags[c.screen][1]})
-                end
-            end
+            buttons = clientbuttons
         }
     },
     {
