@@ -67,8 +67,8 @@ end
 
 -- {{{ Variable definitions
 -- Themes define colours, icons, font and wallpapers.
---beautiful.init("/usr/local/share/awesome/themes/default/theme.lua")
-beautiful.init("/home/mu/.config/awesome/themes/default/theme.lua")
+beautiful.init("/usr/share/awesome/themes/default/theme.lua")
+beautiful.get().wallpaper = "/home/mu/.config/wallpaper.jpg"
 
 -- This is used later as the default terminal and editor to run.
 terminal = "konsole"
