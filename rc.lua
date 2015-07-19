@@ -103,6 +103,7 @@ default_layout = awful.layout.suit.tile
 tag_for_eml = 10
 tag_for_im = 12
 tag_for_music = 11
+tag_for_queue = 8
 tag_for_www = 9
 
 tag_numbers = { 1, 2, 3, 4, 5, '6', '7', '8', '9', '0', '-', '=' }
@@ -612,6 +613,10 @@ awful.rules.rules = {
         properties = { tag = tags[1][tag_for_www] }
     },
     {
+        rule = { class = "Chromium-browser" },
+        properties = { tag = tags[1][tag_for_music] }
+    },
+    {
         rule = { class = "Rekonq" },
         properties = { tag = tags[1][tag_for_www] }
     },
@@ -650,6 +655,14 @@ awful.rules.rules = {
     {
         rule = { class = "Thunderbird" },
         properties = { tag = tags[1][tag_for_eml] }
+    },
+    {
+        rule = { class = "Ktorrent" },
+        properties = { tag = tags[1][tag_for_queue] }
+    },
+    {
+        rule = { class = "Kontact" },
+        properties = { tag = tags[1][tag_for_music] }
     },
 }
 -- }}}
