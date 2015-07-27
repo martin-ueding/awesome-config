@@ -664,6 +664,10 @@ awful.rules.rules = {
         rule = { class = "Kontact" },
         properties = { tag = tags[1][tag_for_music] }
     },
+    {
+        rule = { class = "Dolphin", name = "Kopiervorgang" },
+        properties = { floating = true }
+    },
 }
 -- }}}
 
