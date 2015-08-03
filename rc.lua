@@ -668,6 +668,10 @@ awful.rules.rules = {
         rule = { class = "Dolphin", name = "Kopiervorgang" },
         properties = { floating = true }
     },
+    {
+        rule = { class = "Dolphin", name = "Verschiebevorgang" },
+        properties = { floating = true }
+    },
 }
 -- }}}
 
