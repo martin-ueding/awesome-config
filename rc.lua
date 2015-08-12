@@ -606,10 +606,10 @@ awful.rules.rules = {
             c:geometry( { width = 600 , height = 500 } )
         end,
     },
---    {
---        rule = { class = "plasmashell" },
---        properties = { minimized = true },
---    },
+    {
+        rule = { class = "plasmashell", name = "Arbeitsfläche — Plasma" },
+        properties = { minimized = true, focusable = false, tag= tags[12] },
+    },
     {
         rule = { class = "Firefox" },
         properties = { tag = tags[1][tag_for_www] }
