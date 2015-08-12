@@ -627,6 +627,14 @@ awful.rules.rules = {
         properties = { tag = tags[1][tag_for_im] }
     },
     {
+        rule = { class = "Mumble" },
+        properties = { tag = tags[1][tag_for_im] }
+    },
+    {
+        rule = { class = "Keepassx", type = "normal" },
+        properties = { tag = tags[1][tag_for_www], minimized = true }
+    },
+    {
         rule = { class = "Kopete" },
         properties = { tag = tags[1][tag_for_im] }
     },
