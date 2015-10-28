@@ -449,6 +449,7 @@ globalkeys = awful.util.table.join(
     -- Prompt
     awful.key({ modkey }, "r", function () mypromptbox[mouse.screen]:run() end),
     awful.key({ modkey }, "d", function () awful.util.spawn("dolphin") end),
+    awful.key({ modkey }, "s", function () awful.util.spawn("dolphin Dokumente/Studium/Master_Science_Physik/") end),
     awful.key({ modkey }, "F12", function () awful.util.spawn("suspend-hook") end),
     awful.key({ modkey }, "F1", function () awful.util.spawn("xbacklight - 10") end),
     awful.key({ modkey }, "F2", function () awful.util.spawn("xbacklight + 10") end),
