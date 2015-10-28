@@ -449,7 +449,7 @@ globalkeys = awful.util.table.join(
     -- Prompt
     awful.key({ modkey }, "r", function () mypromptbox[mouse.screen]:run() end),
     awful.key({ modkey }, "d", function () awful.util.spawn("dolphin") end),
-    awful.key({ modkey }, "F12", function () awful.util.spawn("lock-and-off") end),
+    awful.key({ modkey }, "F12", function () awful.util.spawn("suspend-hook") end),
     awful.key({ modkey }, "F1", function () awful.util.spawn("xbacklight - 10") end),
     awful.key({ modkey }, "F2", function () awful.util.spawn("xbacklight + 10") end),
     awful.key({ modkey, "Shift" }, "x", function () awful.util.spawn("xournal") end),
@@ -771,4 +771,4 @@ if screen.count() > 1 then
     awful.tag.setmwfact(0.37, tags[1][tag_for_eml])
 end
 
-awful.util.spawn_with_shell("mu-wakeup")
+awful.util.spawn_with_shell("mu-startup")
