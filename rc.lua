@@ -270,11 +270,11 @@ end
 batwidget = wibox.widget.textbox()
 vicious.register(batwidget, vicious.widgets.bat, bat_func, 15, "BAT0")
 
-netwidget = wibox.widget.textbox()
-vicious.register(netwidget, vicious.widgets.net, net_widget_function, 2)
+-- netwidget = wibox.widget.textbox()
+-- vicious.register(netwidget, vicious.widgets.net, net_widget_function, 2)
 
-diowidget = wibox.widget.textbox()
-vicious.register(diowidget, vicious.widgets.dio, dio_widget_function, 2)
+-- diowidget = wibox.widget.textbox()
+-- vicious.register(diowidget, vicious.widgets.dio, dio_widget_function, 2)
 
 cpuwidget = wibox.widget.textbox()
 vicious.register(cpuwidget, vicious.widgets.cpu, widget_printer('CPU', '$1 %', 1, 20, 90, 101), 2)
@@ -372,8 +372,8 @@ for s = 1, screen.count() do
     local right_layout = wibox.layout.fixed.horizontal()
     right_layout:add(cpuwidget)
     right_layout:add(memwidget)
-    right_layout:add(diowidget)
-    right_layout:add(netwidget)
+    -- right_layout:add(diowidget)
+    -- right_layout:add(netwidget)
     right_layout:add(batwidget)
 
     right_layout:add(mytextclock)
