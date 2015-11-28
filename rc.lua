@@ -361,7 +361,7 @@ for s = 1, screen.count() do
     mytasklist[s] = awful.widget.tasklist(s, awful.widget.tasklist.filter.currenttags, mytasklist.buttons)
 
     -- Create the wibox
-    mywibox[s] = awful.wibox({ position = "bottom", screen = s })
+    mywibox[s] = awful.wibox({ position = "left", screen = s })
 
     -- Widgets that are aligned to the left
     local left_layout = wibox.layout.fixed.horizontal()
@@ -386,7 +386,11 @@ for s = 1, screen.count() do
     layout:set_middle(mytasklist[s])
     layout:set_right(right_layout)
 
-    mywibox[s]:set_widget(layout)
+    local rotated = wibox.layout.rotate()
+    rotated:set_widget(layout)
+    rotated:set_direction('east')
+
+    mywibox[s]:set_widget(rotated)
 end
 -- }}}
 
