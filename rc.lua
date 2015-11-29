@@ -621,7 +621,7 @@ awful.rules.rules = {
         properties = { tag = tags[1][tag_for_www] }
     },
     {
-        rule = { class = "Chromium-browser" },
+        rule = { class = "Spotify" },
         properties = { tag = tags[1][tag_for_music] }
     },
     {
