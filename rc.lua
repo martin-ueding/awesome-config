@@ -402,6 +402,14 @@ root.buttons(awful.util.table.join(
 ))
 -- }}}
 
+function vol_up()
+    awful.util.spawn("amixer set Master 5%+")
+end
+
+function vol_down()
+    awful.util.spawn("amixer set Master 5%-")
+end
+
 -- {{{ Key bindings
 globalkeys = awful.util.table.join(
     awful.key({ modkey,           }, "Left",   awful.tag.viewprev       ),
@@ -455,8 +463,7 @@ globalkeys = awful.util.table.join(
     awful.key({ modkey }, "d", function () awful.util.spawn("dolphin") end),
     awful.key({ modkey }, "s", function () awful.util.spawn("dolphin Dokumente/Studium/Master_Science_Physik/") end),
     awful.key({ modkey }, "F2", function () awful.util.spawn("suspend-hook") end),
-    awful.key({ modkey }, "F1", function () awful.util.spawn("xbacklight - 10") end),
-    awful.key({ modkey }, "F2", function () awful.util.spawn("xbacklight + 10") end),
+    awful.key({ modkey, "Shift" }, "F2", function () awful.util.spawn("lock-suspend") end),
     awful.key({ modkey, "Shift" }, "x", function () awful.util.spawn("xournal") end),
     awful.key({ }, "XF86TaskPane", function () awful.util.spawn("thinkpad-rotate") end),
     awful.key({ modkey }, "x",
@@ -468,7 +475,13 @@ globalkeys = awful.util.table.join(
               end),
     -- Menubar
     awful.key({ modkey }, "p", function() menubar.show() end),
-    awful.key({"Control", "Shift", "Alt"}, "PageDown", function () awful.util.spawn_with_shell("systemctl poweroff") end)
+    awful.key({"Control", "Shift", "Alt"}, "PageDown", function () awful.util.spawn_with_shell("systemctl poweroff") end),
+    awful.key({ }, "XF86AudioRaiseVolume", vol_up),
+    awful.key({ }, "XF86AudioRaiseVolume", vol_down),
+    awful.key({ modkey }, "F5", function () awful.util.spawn("xbacklight - 10") end),
+    awful.key({ modkey }, "F6", function () awful.util.spawn("xbacklight + 10") end),
+    awful.key({ modkey }, "F7", vol_down),
+    awful.key({ modkey }, "F8", vol_up)
 )
 
 function wrapped_kill(client)
