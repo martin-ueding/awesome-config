@@ -256,7 +256,6 @@ function widget_printer(entity, format, index, limit_show, limit_bad, limit_crit
         end
 
         table.insert(snippets, span)
-        table.insert(snippets, entity .. ': ')
         table.insert(snippets, vicious.helpers.format(format, data))
         table.insert(snippets, '</span>')
         table.insert(snippets, spacer)
@@ -277,10 +276,10 @@ vicious.register(batwidget, vicious.widgets.bat, bat_func, 15, "BAT0")
 -- vicious.register(diowidget, vicious.widgets.dio, dio_widget_function, 2)
 
 cpuwidget = wibox.widget.textbox()
-vicious.register(cpuwidget, vicious.widgets.cpu, widget_printer('CPU', '$1 %', 1, 20, 90, 101), 2)
+vicious.register(cpuwidget, vicious.widgets.cpu, widget_printer('CPU', spacer..'$1 %', 1, 20, 90, 101), 2)
 
 memwidget = wibox.widget.textbox()
-vicious.register(memwidget, vicious.widgets.mem, widget_printer('RAM', '$2 / $3 MB', 1, 75, 85, 95), 5)
+vicious.register(memwidget, vicious.widgets.mem, widget_printer('RAM', '$1 %', 1, 75, 85, 95), 5)
 
 mytextclock = wibox.widget.textbox()
 vicious.register(mytextclock, vicious.widgets.date, wrap_with_color("%a, %Y-%m-%d <b>%H:%M</b> %z" .. spacer, 'blue'), 10)
