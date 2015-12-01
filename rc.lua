@@ -279,7 +279,7 @@ cpuwidget = wibox.widget.textbox()
 vicious.register(cpuwidget, vicious.widgets.cpu, widget_printer('CPU', spacer..'$1 %', 1, 20, 90, 101), 2)
 
 memwidget = wibox.widget.textbox()
-vicious.register(memwidget, vicious.widgets.mem, widget_printer('RAM', '$1 %', 1, 75, 85, 95), 5)
+vicious.register(memwidget, vicious.widgets.mem, widget_printer('RAM', '$2', 1, 75, 85, 95), 5)
 
 mytextclock = wibox.widget.textbox()
 vicious.register(mytextclock, vicious.widgets.date, wrap_with_color("%a, %Y-%m-%d <b>%H:%M</b> %z" .. spacer, 'blue'), 10)
