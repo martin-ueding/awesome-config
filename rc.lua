@@ -453,6 +453,18 @@ globalkeys = awful.util.table.join(
 
     awful.key({ modkey, "Control" }, "n", awful.client.restore),
 
+    -- External screen brightness
+    awful.key({ modkey, "Control" }, "F1", function () awful.util.spawn("brightness 10") end),
+    awful.key({ modkey, "Control" }, "F2", function () awful.util.spawn("brightness 20") end),
+    awful.key({ modkey, "Control" }, "F3", function () awful.util.spawn("brightness 30") end),
+    awful.key({ modkey, "Control" }, "F4", function () awful.util.spawn("brightness 40") end),
+    awful.key({ modkey, "Control" }, "F5", function () awful.util.spawn("brightness 50") end),
+    awful.key({ modkey, "Control" }, "F6", function () awful.util.spawn("brightness 60") end),
+    awful.key({ modkey, "Control" }, "F7", function () awful.util.spawn("brightness 70") end),
+    awful.key({ modkey, "Control" }, "F8", function () awful.util.spawn("brightness 80") end),
+    awful.key({ modkey, "Control" }, "F9", function () awful.util.spawn("brightness 90") end),
+    awful.key({ modkey, "Control" }, "F10", function () awful.util.spawn("brightness 100") end),
+
     -- Prompt
     awful.key({ modkey }, "r", function () mypromptbox[mouse.screen]:run() end),
     awful.key({ modkey }, "d", function () awful.util.spawn("dolphin") end),
