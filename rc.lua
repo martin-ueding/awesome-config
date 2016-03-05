@@ -116,7 +116,7 @@ tags[1] = awful.tag(
     s,
     { default_layout, default_layout, default_layout, default_layout,
     default_layout, default_layout, default_layout, awful.layout.suit.fair,
-    default_layout, default_layout, awful.layout.suit.max, awful.layout.suit.fair }
+    default_layout, default_layout, awful.layout.suit.max, default_layout }
 )
 for s = 2, screen.count() do
     tags[s] = awful.tag({ 1, 2, 3, 4, 5, 6, 7, 8, 9 }, s, default_layout)
@@ -454,15 +454,15 @@ globalkeys = awful.util.table.join(
     awful.key({ modkey, "Control" }, "n", awful.client.restore),
 
     -- External screen brightness
-    awful.key({ modkey, "Control" }, "F1", function () awful.util.spawn("brightness 10") end),
-    awful.key({ modkey, "Control" }, "F2", function () awful.util.spawn("brightness 20") end),
-    awful.key({ modkey, "Control" }, "F3", function () awful.util.spawn("brightness 30") end),
-    awful.key({ modkey, "Control" }, "F4", function () awful.util.spawn("brightness 40") end),
-    awful.key({ modkey, "Control" }, "F5", function () awful.util.spawn("brightness 50") end),
-    awful.key({ modkey, "Control" }, "F6", function () awful.util.spawn("brightness 60") end),
-    awful.key({ modkey, "Control" }, "F7", function () awful.util.spawn("brightness 70") end),
-    awful.key({ modkey, "Control" }, "F8", function () awful.util.spawn("brightness 80") end),
-    awful.key({ modkey, "Control" }, "F9", function () awful.util.spawn("brightness 90") end),
+    awful.key({ modkey, "Control" }, "F1", function () awful.util.spawn("brightness 0") end),
+    awful.key({ modkey, "Control" }, "F2", function () awful.util.spawn("brightness 3") end),
+    awful.key({ modkey, "Control" }, "F3", function () awful.util.spawn("brightness 8") end),
+    awful.key({ modkey, "Control" }, "F4", function () awful.util.spawn("brightness 15") end),
+    awful.key({ modkey, "Control" }, "F5", function () awful.util.spawn("brightness 20") end),
+    awful.key({ modkey, "Control" }, "F6", function () awful.util.spawn("brightness 30") end),
+    awful.key({ modkey, "Control" }, "F7", function () awful.util.spawn("brightness 40") end),
+    awful.key({ modkey, "Control" }, "F8", function () awful.util.spawn("brightness 60") end),
+    awful.key({ modkey, "Control" }, "F9", function () awful.util.spawn("brightness 80") end),
     awful.key({ modkey, "Control" }, "F10", function () awful.util.spawn("brightness 100") end),
 
     -- Prompt
@@ -472,6 +472,7 @@ globalkeys = awful.util.table.join(
     awful.key({ modkey }, "F2", function () awful.util.spawn("suspend-hook") end),
     awful.key({ modkey, "Shift" }, "F2", function () awful.util.spawn("lock-suspend") end),
     awful.key({ }, "Print", function () awful.util.spawn("ksnapshot") end),
+    awful.key({ modkey }, "Print", function () awful.util.spawn("import-and-dolphin") end),
     awful.key({ modkey, "Shift" }, "x", function () awful.util.spawn("xournal") end),
     awful.key({ }, "XF86TaskPane", function () awful.util.spawn("thinkpad-rotate") end),
     awful.key({ modkey }, "x",
