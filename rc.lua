@@ -638,10 +638,10 @@ awful.rules.rules = {
         rule = { class = "plasmashell", name = "Arbeitsfläche — Plasma" },
         properties = { minimized = true, focusable = false, tag= tags[12] },
     },
-    {
-        rule = { class = "Firefox" },
-        properties = { tag = tags[1][tag_for_www] }
-    },
+--  {
+--      rule = { class = "Firefox" },
+--      properties = { tag = tags[1][tag_for_www] }
+--  },
     {
         rule = { class = "Spotify" },
         properties = { tag = tags[1][tag_for_music] }
