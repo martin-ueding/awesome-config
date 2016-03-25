@@ -487,8 +487,8 @@ globalkeys = awful.util.table.join(
     awful.key({"Control", "Shift", "Alt"}, "PageDown", function () awful.util.spawn_with_shell("systemctl poweroff") end),
     --awful.key({ }, "XF86AudioRaiseVolume", vol_up),
     --awful.key({ }, "XF86AudioRaiseVolume", vol_down),
-    awful.key({ modkey }, "F5", function () awful.util.spawn("xbacklight - 10") end),
-    awful.key({ modkey }, "F6", function () awful.util.spawn("xbacklight + 10") end),
+    awful.key({ modkey }, "F5", function () awful.util.spawn("xbacklight - 5") end),
+    awful.key({ modkey }, "F6", function () awful.util.spawn("xbacklight + 5") end),
     awful.key({ modkey }, "F7", vol_down),
     awful.key({ modkey }, "F8", vol_up)
 )
