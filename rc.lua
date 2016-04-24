@@ -72,7 +72,7 @@ beautiful.init("/usr/share/awesome/themes/default/theme.lua")
 beautiful.get().wallpaper = "/home/mu/.config/wallpaper.jpg"
 
 -- This is used later as the default terminal and editor to run.
-terminal = "konsole"
+terminal = "konsole --workdir ~"
 editor = os.getenv("EDITOR") or "nano"
 editor_cmd = terminal .. " -e " .. editor
 
