@@ -119,7 +119,13 @@ tags[1] = awful.tag(
     default_layout, default_layout, awful.layout.suit.max, default_layout }
 )
 for s = 2, screen.count() do
-    tags[s] = awful.tag({ 1, 2, 3, 4, 5, 6, 7, 8, 9 }, s, default_layout)
+    local layout
+    if screen.count() == 3 and s == 2 then
+        layout = awful.layout.suit.tile.left
+    else
+        layout = awful.layout.suit.tile
+    end
+    tags[s] = awful.tag({ 1, 2, 3, 4, 5, 6, 7, 8, 9 }, s, layout)
 end
 
 -- {{{ Wallpaper
