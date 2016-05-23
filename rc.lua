@@ -480,6 +480,7 @@ globalkeys = awful.util.table.join(
     awful.key({ }, "Print", function () awful.util.spawn("ksnapshot") end),
     awful.key({ modkey }, "Print", function () awful.util.spawn("import-and-dolphin") end),
     awful.key({ modkey, "Shift" }, "x", function () awful.util.spawn("xournal") end),
+    awful.key({ modkey, "Control", "Shift" }, "x", function () awful.util.spawn("/home/mu/Projekte/xournal/src/xournal --vertical") end),
     awful.key({ }, "XF86TaskPane", function () awful.util.spawn("thinkpad-rotate") end),
     awful.key({ modkey }, "x",
               function ()
