@@ -275,6 +275,9 @@ end
 batwidget = wibox.widget.textbox()
 vicious.register(batwidget, vicious.widgets.bat, bat_func, 15, "BAT0")
 
+tempwidget = wibox.widget.textbox()
+vicious.register(tempwidget, vicious.widgets.thermal, widget_printer('Temp', "$1", 1, 50, 70, 90) , 15, "thermal_zone0")
+
 -- netwidget = wibox.widget.textbox()
 -- vicious.register(netwidget, vicious.widgets.net, net_widget_function, 2)
 
@@ -379,6 +382,7 @@ for s = 1, screen.count() do
     right_layout:add(memwidget)
     -- right_layout:add(diowidget)
     -- right_layout:add(netwidget)
+    right_layout:add(tempwidget)
     right_layout:add(batwidget)
 
     right_layout:add(mytextclock)
