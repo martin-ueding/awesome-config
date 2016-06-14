@@ -150,8 +150,11 @@ function bat_func(widget, data)
     local time = data[2]
     local color
     local span
+    local unknown_state = "⌁"
 
-    if percentage > 30 or (state ~= '−' and state ~= '-') then
+    if state == unknown_state then
+        span = '<span color="' .. solarized.base01 .. '">'
+    elseif percentage > 30 or (state ~= '−' and state ~= '-') then
         span = '<span color="' .. solarized.green .. '">'
     elseif percentage > 10 then
         span = '<span color="black" bgcolor="' .. solarized.yellow .. '">'
@@ -276,7 +279,7 @@ batwidget = wibox.widget.textbox()
 vicious.register(batwidget, vicious.widgets.bat, bat_func, 15, "BAT0")
 
 tempwidget = wibox.widget.textbox()
-vicious.register(tempwidget, vicious.widgets.thermal, widget_printer('Temp', "$1", 1, 50, 70, 90) , 15, "thermal_zone0")
+vicious.register(tempwidget, vicious.widgets.thermal, widget_printer('Temp', "$1 C", 1, 80, 90, 95) , 15, "thermal_zone0")
 
 -- netwidget = wibox.widget.textbox()
 -- vicious.register(netwidget, vicious.widgets.net, net_widget_function, 2)
