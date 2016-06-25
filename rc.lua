@@ -483,7 +483,7 @@ globalkeys = awful.util.table.join(
     awful.key({ modkey }, "d", function () awful.util.spawn("dolphin") end),
     awful.key({ modkey }, "s", function () awful.util.spawn("dolphin Dokumente/Studium/Master_Science_Physik/") end),
     awful.key({ modkey }, "F2", function () awful.util.spawn("suspend-hook") end),
-    awful.key({ modkey, "Shift" }, "F2", function () awful.util.spawn("lock-suspend") end),
+    awful.key({ modkey, "Shift" }, "F2", function () awful.util.spawn("systemctl suspend") end),
     awful.key({ }, "Print", function () awful.util.spawn("ksnapshot") end),
     awful.key({ modkey }, "Print", function () awful.util.spawn("import-and-dolphin") end),
     awful.key({ modkey, "Shift" }, "x", function () awful.util.spawn("xournal") end),
