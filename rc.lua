@@ -162,7 +162,7 @@ function bat_func(widget, data)
         span = '<span color="black" bgcolor="' .. solarized.red .. '">'
     end
 
-    return span .. vicious.helpers.format('$1 <b>$2%</b> $3', data) .. endspan .. spacer
+    return ' '  .. span .. vicious.helpers.format(' $1 <b>$2%</b> $3 ', data) .. endspan .. ' '
 end
 
 function if_exists(data, iface)
@@ -264,10 +264,13 @@ function widget_printer(entity, format, index, limit_show, limit_bad, limit_crit
             span = '<span color="' .. solarized.base01 .. '">'
         end
 
+        table.insert(snippets, ' ')
         table.insert(snippets, span)
+        table.insert(snippets, ' ')
         table.insert(snippets, vicious.helpers.format(format, data))
+        table.insert(snippets, ' ')
         table.insert(snippets, '</span>')
-        table.insert(snippets, spacer)
+        table.insert(snippets, ' ')
         local result = table.concat(snippets, '')
         return result
     end
@@ -288,13 +291,16 @@ vicious.register(tempwidget, vicious.widgets.thermal, widget_printer('Temp', "$1
 -- vicious.register(diowidget, vicious.widgets.dio, dio_widget_function, 2)
 
 cpuwidget = wibox.widget.textbox()
-vicious.register(cpuwidget, vicious.widgets.cpu, widget_printer('CPU', spacer..'$1 %', 1, 20, 90, 101), 2)
+vicious.register(cpuwidget, vicious.widgets.cpu, widget_printer('CPU', '$1 %', 1, 20, 90, 101), 2)
 
 memwidget = wibox.widget.textbox()
 vicious.register(memwidget, vicious.widgets.mem, widget_printer('RAM', '$2', 1, 75, 85, 95), 5)
 
 mytextclock = wibox.widget.textbox()
-vicious.register(mytextclock, vicious.widgets.date, wrap_with_color("%a, %Y-%m-%d <b>%H:%M</b> %z" .. spacer, 'blue'), 10)
+vicious.register(mytextclock, vicious.widgets.date, wrap_with_color(" %a, %Y-%m-%d <b>%H:%M</b> %z ", 'blue'), 10)
+
+oswidget = wibox.widget.textbox()
+vicious.register(oswidget, vicious.widgets.os, wrap_with_color(" $4 ", "base0"), 1000)
 
 mysystray = wibox.widget.systray()
 -- Menubar configuration
@@ -386,8 +392,8 @@ for s = 1, screen.count() do
     -- right_layout:add(diowidget)
     -- right_layout:add(netwidget)
     right_layout:add(tempwidget)
+    right_layout:add(oswidget)
     right_layout:add(batwidget)
-
     right_layout:add(mytextclock)
     if s == 1 then right_layout:add(wibox.widget.systray()) end
     right_layout:add(mylayoutbox[s])
