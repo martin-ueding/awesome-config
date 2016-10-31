@@ -488,13 +488,12 @@ globalkeys = awful.util.table.join(
     awful.key({ modkey }, "r", function () mypromptbox[mouse.screen]:run() end),
     awful.key({ modkey }, "d", function () awful.util.spawn("dolphin") end),
     awful.key({ modkey }, "s", function () awful.util.spawn("dolphin Dokumente/Studium/Master_Science_Physik/Masterarbeit/") end),
-    awful.key({ modkey }, "F2", function () awful.util.spawn("suspend-hook") end),
-    awful.key({ modkey, "Shift" }, "F2", function () awful.util.spawn("systemctl suspend") end),
     awful.key({ }, "Print", function () awful.util.spawn("ksnapshot") end),
     awful.key({ modkey }, "Print", function () awful.util.spawn("import-and-dolphin") end),
     awful.key({ modkey, "Shift" }, "x", function () awful.util.spawn("xournal") end),
     awful.key({ modkey, "Control", "Shift" }, "x", function () awful.util.spawn("/home/mu/Projekte/xournal/src/xournal --vertical") end),
     awful.key({ }, "XF86TaskPane", function () awful.util.spawn("thinkpad-rotate") end),
+    awful.key({ }, "XF86RotateWindows", function () awful.util.spawn("thinkpad-rotate left") end),
     awful.key({ modkey }, "x",
               function ()
                   awful.prompt.run({ prompt = "Run Lua code: " },
@@ -507,10 +506,19 @@ globalkeys = awful.util.table.join(
     awful.key({"Control", "Shift", "Alt"}, "PageDown", function () awful.util.spawn_with_shell("systemctl poweroff") end),
     --awful.key({ }, "XF86AudioRaiseVolume", vol_up),
     --awful.key({ }, "XF86AudioRaiseVolume", vol_down),
+    awful.key({ }, "XF86Launch1", function () awful.util.spawn("thinkpad-dock off") end),
+    awful.key({ modkey }, "F2", function () awful.util.spawn("suspend-hook") end),
+    awful.key({ modkey, "Shift" }, "F2", function () awful.util.spawn("systemctl suspend") end),
     awful.key({ modkey }, "F5", function () awful.util.spawn("xbacklight - 5") end),
+    awful.key({ modkey, "Shift" }, "F5", function () awful.util.spawn("xbacklight - 1") end),
     awful.key({ modkey }, "F6", function () awful.util.spawn("xbacklight + 5") end),
+    awful.key({ modkey, "Shift" }, "F6", function () awful.util.spawn("xbacklight + 1") end),
     awful.key({ modkey }, "F7", vol_down),
-    awful.key({ modkey }, "F8", vol_up)
+    awful.key({ modkey }, "F8", vol_up),
+    awful.key({ modkey }, "F9", function () awful.util.spawn("displayctl hiskp-on") end),
+    awful.key({ modkey }, "F10", function () awful.util.spawn("displayctl hiskp-off") end),
+    awful.key({ modkey }, "F11", function () awful.util.spawn("displayctl sidekick-off") end),
+    awful.key({ modkey }, "F12", function () awful.util.spawn("displayctl sidekick-left") end)
 )
 
 function wrapped_kill(client)
