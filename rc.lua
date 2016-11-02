@@ -69,7 +69,7 @@ end
 -- {{{ Variable definitions
 -- Themes define colours, icons, font and wallpapers.
 beautiful.init("/usr/share/awesome/themes/default/theme.lua")
-beautiful.get().wallpaper = "/home/mu/.config/wallpaper.jpg"
+beautiful.get().wallpaper = "/home/mu/.config/wallpaper-1920.png"
 
 -- This is used later as the default terminal and editor to run.
 terminal = "konsole --workdir ~"
@@ -131,7 +131,7 @@ end
 -- {{{ Wallpaper
 if beautiful.wallpaper then
     for s = 1, screen.count() do
-        gears.wallpaper.maximized(beautiful.wallpaper, s, true)
+        gears.wallpaper.centered(beautiful.wallpaper, s)
     end
 end
 -- }}}
