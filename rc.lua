@@ -515,10 +515,10 @@ globalkeys = awful.util.table.join(
     awful.key({ modkey, "Shift" }, "F6", function () awful.util.spawn("xbacklight + 1") end),
     awful.key({ modkey }, "F7", vol_down),
     awful.key({ modkey }, "F8", vol_up),
-    awful.key({ modkey }, "F9", function () awful.util.spawn("displayctl hiskp-on") end),
-    awful.key({ modkey }, "F10", function () awful.util.spawn("displayctl hiskp-off") end),
-    awful.key({ modkey }, "F11", function () awful.util.spawn("displayctl sidekick-off") end),
-    awful.key({ modkey }, "F12", function () awful.util.spawn("displayctl sidekick-left") end)
+    awful.key({ modkey }, "F9", function () awful.util.spawn("displayctl hiskp-off") end),
+    awful.key({ modkey }, "F10", function () awful.util.spawn("displayctl hiskp-on") end),
+    awful.key({ modkey }, "F11", function () awful.util.spawn("displayctl sidekick-left") end),
+    awful.key({ modkey }, "F12", function () awful.util.spawn("displayctl sidekick-off") end)
 )
 
 function wrapped_kill(client)
