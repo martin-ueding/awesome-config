@@ -486,6 +486,9 @@ globalkeys = awful.util.table.join(
 
     -- Prompt
     awful.key({ modkey }, "r", function () mypromptbox[mouse.screen]:run() end),
+
+    awful.key({ "Control" }, "Escape", function () awful.util.spawn("konsole -e htop") end),
+
     awful.key({ modkey }, "d", function () awful.util.spawn("dolphin") end),
     awful.key({ modkey }, "s", function () awful.util.spawn("dolphin Dokumente/Studium/Master_Science_Physik/Masterarbeit/") end),
     awful.key({ }, "Print", function () awful.util.spawn("ksnapshot") end),
