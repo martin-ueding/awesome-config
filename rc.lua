@@ -299,6 +299,9 @@ vicious.register(memwidget, vicious.widgets.mem, widget_printer('RAM', '$2', 1, 
 mytextclock = wibox.widget.textbox()
 vicious.register(mytextclock, vicious.widgets.date, wrap_with_color(" %a, %Y-%m-%d <b>%H:%M</b> %z ", 'base1'), 10)
 
+weather_widget = wibox.widget.textbox()
+vicious.register(weather_widget, vicious.widgets.weather, "${tempc} C", 5, "EDDK")
+
 oswidget = wibox.widget.textbox()
 vicious.register(oswidget, vicious.widgets.os, wrap_with_color(" $4 ", "base0"), 1000)
 
@@ -392,7 +395,8 @@ for s = 1, screen.count() do
     -- right_layout:add(diowidget)
     -- right_layout:add(netwidget)
     right_layout:add(tempwidget)
-    right_layout:add(oswidget)
+    -- right_layout:add(oswidget)
+    right_layout:add(weather_widget)
     right_layout:add(batwidget)
     right_layout:add(mytextclock)
     if s == 1 then right_layout:add(wibox.widget.systray()) end
@@ -643,6 +647,7 @@ awful.rules.rules = {
             keys = clientkeys,
             maximized_vertical = false,
             maximized_horizontal = false,
+            screen = awful.screen.preferred,
             buttons = clientbuttons
         }
     },
