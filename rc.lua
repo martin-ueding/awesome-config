@@ -592,6 +592,13 @@ for i = 1, keynumber do
                         local tag = awful.tag.gettags(screen)[i]
                         if tag then
                            awful.tag.viewonly(tag)
+                        else
+                           -- The tags `0`, `-`, and `=` only exist on the main
+                           -- screen. If those are requested on a different
+                           -- screen, go to the main screen.
+                           tag = awful.tag.gettags(1)[i]
+                           awful.tag.viewonly(tag)
+                           awful.screen.focus(1)
                         end
                   end),
         -- Toggle tag.
@@ -829,6 +836,7 @@ client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_n
 
 awful.screen.focus(1)
 
+-- Set the email screen up for composing 72 columns wide emails on my screen.
 if screen.count() > 1 then
     awful.tag.setncol(2, tags[1][tag_for_eml])
     awful.tag.setmwfact(0.37, tags[1][tag_for_eml])
