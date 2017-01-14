@@ -120,10 +120,15 @@ tags[1] = awful.tag(
 )
 for s = 2, screen.count() do
     local layout
-    if screen.count() == 3 and s == 2 then
-        layout = awful.layout.suit.tile.left
+    local geom = screen[s].geometry
+    if geom.width > geom.height then
+        if screen.count() == 3 and s == 2 then
+            layout = awful.layout.suit.tile.left
+        else
+            layout = awful.layout.suit.tile
+        end
     else
-        layout = awful.layout.suit.tile
+        layout = awful.layout.suit.tile.bottom
     end
     tags[s] = awful.tag({ 1, 2, 3, 4, 5, 6, 7, 8, 9 }, s, layout)
 end
