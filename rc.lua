@@ -37,6 +37,10 @@ end
 
 endspan = '</span>'
 
+function pad(string)
+    return ' ' .. string .. ' '
+end
+
 function wrap_with_color(string, color) 
     return span[color] .. string .. endspan
 end
@@ -271,9 +275,7 @@ function widget_printer(entity, format, index, limit_show, limit_bad, limit_crit
 
         table.insert(snippets, ' ')
         table.insert(snippets, span)
-        table.insert(snippets, ' ')
         table.insert(snippets, vicious.helpers.format(format, data))
-        table.insert(snippets, ' ')
         table.insert(snippets, '</span>')
         table.insert(snippets, ' ')
         local result = table.concat(snippets, '')
@@ -287,7 +289,7 @@ batwidget = wibox.widget.textbox()
 vicious.register(batwidget, vicious.widgets.bat, bat_func, 15, "BAT0")
 
 tempwidget = wibox.widget.textbox()
-vicious.register(tempwidget, vicious.widgets.thermal, widget_printer('Temp', "$1 C", 1, 80, 90, 95) , 15, "thermal_zone0")
+vicious.register(tempwidget, vicious.widgets.thermal, widget_printer('Temp', ' $1C ', 1, 80, 90, 95) , 15, "thermal_zone0")
 
 -- netwidget = wibox.widget.textbox()
 -- vicious.register(netwidget, vicious.widgets.net, net_widget_function, 2)
@@ -296,19 +298,19 @@ vicious.register(tempwidget, vicious.widgets.thermal, widget_printer('Temp', "$1
 -- vicious.register(diowidget, vicious.widgets.dio, dio_widget_function, 2)
 
 cpuwidget = wibox.widget.textbox()
-vicious.register(cpuwidget, vicious.widgets.cpu, widget_printer('CPU', '$1 %', 1, 20, 90, 101), 2)
+vicious.register(cpuwidget, vicious.widgets.cpu, widget_printer('CPU', ' $1 % ', 1, 20, 90, 101), 2)
 
 memwidget = wibox.widget.textbox()
-vicious.register(memwidget, vicious.widgets.mem, widget_printer('RAM', '$2', 1, 75, 85, 95), 5)
+vicious.register(memwidget, vicious.widgets.mem, widget_printer('RAM', ' $2' , 1, 75, 85, 95), 5)
 
 mytextclock = wibox.widget.textbox()
-vicious.register(mytextclock, vicious.widgets.date, wrap_with_color(" %a, %Y-%m-%d <b>%H:%M</b> %z ", 'base1'), 10)
+vicious.register(mytextclock, vicious.widgets.date, pad(wrap_with_color(' %a, %Y-%m-%d <b>%H:%M</b> %z ', 'base1')), 10)
 
 weather_widget = wibox.widget.textbox()
-vicious.register(weather_widget, vicious.widgets.weather, "${tempc} C", 5, "EDDK")
+vicious.register(weather_widget, vicious.widgets.weather, pad(wrap_with_color(' ${tempc} C ', 'base1')), 5, 'EDDK')
 
 oswidget = wibox.widget.textbox()
-vicious.register(oswidget, vicious.widgets.os, wrap_with_color(" $4 ", "base0"), 1000)
+vicious.register(oswidget, vicious.widgets.os, pad(wrap_with_color(' $4 ', 'base0')), 1000)
 
 mysystray = wibox.widget.systray()
 -- Menubar configuration
